@@ -234,7 +234,12 @@ The created booking.
 
 ### `cancelBooking`
 
+**Input**
 
+| Name     | Type                                                                 |
+| -------- | -------------------------------------------------------------------- |
+| `id`     | `string`                                                             |
+| `reason` | <code><a href="#bookingcancelreason">BookingCancelReason</a>?</code> |
 
 ## Inputs
 
@@ -427,3 +432,10 @@ Represents a single bookable time slot.
 | -------- |
 | `UPLOAD` |
 | `META`   |
+
+### `BookingCancelReason`
+
+| Name          |
+| ------------- |
+| `REBOOKING`   |
+| `UNAVAILABLE` |
