@@ -192,6 +192,25 @@ Delete a product with a given slug.
 | `slug` | `string` |
 
 
+### `createEventSchedule`
+
+Create a new event schedule which will be associated with the current account.
+
+> If no user is logged in, this mutation will throw an error.
+
+**Input**
+
+The input to create a new event schedule.
+
+[`EventScheduleInput`](#eventscheduleinput)
+
+**Output**
+
+The created event schedule.
+
+[`EventSchedule`](#eventschedule)
+
+
 ## Inputs
 
 ### `ResourceInput`
@@ -215,7 +234,7 @@ Delete a product with a given slug.
 | `location`           | [`EventLocationInput`](#eventlocationinput)                        |
 | `schedule`           | <code><a href="#eventscheduleinput">EventScheduleInput</a>?</code> |
 | `scheduleId`         | `string?`                                                          |
-| `showRemainingSlots` | `boolean`                                                          |
+| `showRemainingSlots` | `boolean`                                                           |
 | `slotSizeMax`        | `int`                                                              |
 | `timeSlots`          | `int`                                                              |
 
@@ -252,7 +271,7 @@ Delete a product with a given slug.
 | `imageResource`  | <code><a href="#resource">Resource<a>?</code>         |
 | `fileData`       | <code>[<a href="#resource">Resource<a>]?</code>       |
 | `eventData`      | <code><a href="#productevent">ProductEvent<a>?</code> |
-| `bundleData`     | <code><a href="#product">Product<a>?</code>           |
+| `bundleData`     | <code>[<a href="#product">Product<a>]?</code>           |
 
 > `owner` is `true`, if the currently logged-in user is the owner of the product, `false` otherwise.
 
