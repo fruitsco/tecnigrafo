@@ -244,17 +244,18 @@ Cancel a given booking with the possibility to specify an optional reason.
 | `reason` | <code><a href="#bookingcancelreason">BookingCancelReason</a>?</code> |
 
 
-### `getCalendars`
+### `getCalendarAccounts`
 
-Get a list of all linked calendars for the currently logged in account.
+Get a list of all linked calendar accounts for the currently logged in account.
 
 **Output**
 
-A list of calendars.
+A list of calendar accounts.
 
-<code>[<a href="#calendar">Calendar</a>]</code>
+<code>[<a href="#calendaraccount">CalendarAccount</a>]</code>
 
-### `linkCalendar`
+
+### `linkCalendarAccount`
 
 Link a new calendar account to the currently logged in account.
 
@@ -273,6 +274,17 @@ A url which can be used to connect to a calendar account.
 | `url` | `string` |
 
 
+### `deleteCalendarAccount`
+
+Unlink and delete an existing calendar connection from the currently logged in account.
+
+**Input**
+
+| Name | Type     |
+| ---- | -------- |
+| `id` | `string` |
+
+
 ### `updateCalendar`
 
 Update an existing calendar of the currently logged in account.
@@ -284,16 +296,6 @@ Update an existing calendar of the currently logged in account.
 | `id`               | `string`  |
 | `detectCollission` | `boolean` |
 
-
-### `deleteCalendar`
-
-Unlink and delete an existing calendar connection from the currently logged in account.
-
-**Input**
-
-| Name | Type     |
-| ---- | -------- |
-| `id` | `string` |
 
 ### `setDefaultCalendar`
 
@@ -459,7 +461,7 @@ Represents a single bookable time slot.
 | `location`  | [`EventLocation`](#eventlocation) |
 | `createdAt` | `DateTime`                        |
 
-### `Calendar`
+### `CalendarAccount`
 
 | Name          | Type                                                      |
 | ------------- | --------------------------------------------------------- |
@@ -468,9 +470,9 @@ Represents a single bookable time slot.
 | `accountName` | `string`                                                  |
 | `provider`    | [`CalendarProvider`](#calendarprovider)                   |
 | `providerId`  | `string`                                                  |
-| `calendars`   | <code>[<a href="#calendarentry">CalendarEntry</a>]</code> |
+| `calendars`   | <code>[<a href="#calendar">Calendar</a>]</code> |
 
-### `CalendarEntry`
+### `Calendar`
 
 | Name              | Type      |
 | ----------------- | --------- |
