@@ -246,7 +246,7 @@ Delete a product with a given slug.
 | `type`           | [`ProductType`](#producttype)                         |
 | `name`           | `string`                                              |
 | `description`    | `string?`                                             |
-| `price`          | `int`                                                 |
+| `price`          | `int?`                                                 |
 | `owner`          | `boolean`                                             |
 | `purchased`      | `boolean`                                             |
 | `bannerResource` | <code><a href="#resource">Resource<a>?</code>         |
