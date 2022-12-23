@@ -104,9 +104,9 @@ Get available time slots for a given product on the given day.
 
 **Output**
 
-| Name    | Type                                    |
-| ------- | --------------------------------------- |
-| `slots` | <code>[<a href="#slot">Slot</a>]</code> |
+A list of bookable slots.
+
+<code>[<a href="#slot">Slot</a>]</code>
 
 ## Mutations
 
