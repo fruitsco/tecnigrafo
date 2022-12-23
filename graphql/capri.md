@@ -14,7 +14,9 @@ Get a list of products for a given account name. If no account name is given, th
 
 #### Output
 
-`[`[`Product`](#product)`]`
+A list of products.
+
+<code>[<a href="#product">Product</a>]</code>
 
 
 ### `getProduct`
@@ -29,7 +31,9 @@ Get a product with the given slug.
 
 #### Output
 
-See [`Product`](#product)
+The product, if it was found.
+
+<code><a href="#product">Product</a></code>
 
 
 ### `getProductFiles`
@@ -62,9 +66,10 @@ Get bookings for a given product slug if the current user purchased the item. As
 
 #### Output
 
-List of bookings
+A list of bookings for the given product.
 
-`[`[`Booking`](#booking)`]`
+<code>[<a href="#booking">Booking</a>]</code>
+
 
 ### `getBookableDays`
 
@@ -99,10 +104,10 @@ Get available time slots for a given product on the given day.
 
 #### Output
 
-| Name    | Type                            |
-| ------- | ------------------------------- |
-| `date`  | `DateTime`                      |
-| `slots` | `[`[`TimeRange`](#timerange)`]` |
+| Name    | Type                                              |
+| ------- | ------------------------------------------------- |
+| `date`  | `DateTime`                                        |
+| `slots` | <code>[<a href="#timerange">TimeRange</a>]</code> |
 
 ## Mutations
 
@@ -131,21 +136,24 @@ Create a product with a certain type. For now, it can be either a `file`, an `ev
 
 #### Input
 
-| Name          | Type                                         |
-| ------------- | -------------------------------------------- |
-| `name`        | `string`                                     |
-| `description` | `string?`                                    |
-| `price`       | `int`                                        |
-| `type`        | [`ProductType`](#producttype)                |
-| `fileData`    | `[`[`ResourcInput`](#resourceinput)`]?`      |
-| `eventData`   | [`ProductEventInput`](#producteventinput)`?` |
-| `bundleData`  | `[string]?`                                  |
+| Name          | Type                                                             |
+| ------------- | ---------------------------------------------------------------- |
+| `name`        | `string`                                                         |
+| `description` | `string?`                                                        |
+| `price`       | `int`                                                            |
+| `type`        | [`ProductType`](#producttype)                                    |
+| `fileData`    | <code><a href="#resourceinput">ResourceInput<a>]?</code>         |
+| `eventData`   | <code><a href="#producteventinput">ProductEventInput</a>?</code> |
+| `bundleData`  | `[string]?`                                                      |
 
 > If `type` is *) `event`, `eventData` must be set, *) `file`, `fileData` must be set and *) `bundle`, `bundleData` must be set.
 
 #### Output
 
-See [`Product`](#product)
+The created product.
+
+<code><a href="#product">Product</a></code>
+
 
 ### `updateProduct`
 
@@ -153,23 +161,26 @@ Update a product with a given slug.
 
 #### Input
 
-| Name             | Type                                         |
-| ---------------- | -------------------------------------------- |
-| `slug`           | `string`                                     |
-| `name`           | `string?`                                    |
-| `description`    | `string?`                                    |
-| `price`          | `int?`                                       |
-| `enabled`        | `boolean?`                                   |
-| `eventData`      | [`ProductEventInput`](#producteventinput)`?` |
-| `bundleData`     | `[string]?`                                  |
-| `bannerResource` | [`ResourcInput`](#resourceinput)`]           |
-| `imageResource`  | [`ResourcInput`](#resourceinput)`]           |
+| Name             | Type                                                             |
+| ---------------- | ---------------------------------------------------------------- |
+| `slug`           | `string`                                                         |
+| `name`           | `string?`                                                        |
+| `description`    | `string?`                                                        |
+| `price`          | `int?`                                                           |
+| `enabled`        | `boolean?`                                                       |
+| `bannerResource` | <code><a href="#resourceinput">ResourceInput</a>?</code>         |
+| `imageResource`  | <code><a href="#resourceinput">ResourceInput</a>?</code>         |
+| `eventData`      | <code><a href="#producteventinput">ProductEventInput</a>?</code> |
+| `bundleData`     | `[string]?`                                                      |
 
 > `eventData` may be set only if `type` is `event`. Same for `bundle` and `bundleData`.
 
 #### Output
 
-See [`Product`](#product)
+The updated product.
+
+<code><a href="#product">Product</a></code>
+
 
 ### `deleteProduct`
 
@@ -193,37 +204,37 @@ Delete a product with a given slug.
 
 ### `ProductEventInput`
 
-| Name                 | Type                                                         |
-| -------------------- | ------------------------------------------------------------ |
-| `type`               | [`EventType`](#eventtype)                                    |
-| `bookingStop`        | `int`                                                        |
-| `bufferTimeAfter`    | `int`                                                        |
-| `bufferTimeBefore`   | `int`                                                        |
-| `dateRangeFrom`      | `DateTime`                                                   |
-| `dateRangeTo`        | `DateTime`                                                   |
-| `duration`           | `int`                                                        |
-| `location`           | [`ProductEventLocationInput`](#producteventlocationinput)    |
-| `schedule`           | [`ProductEventScheduleInput`](#producteventscheduleinput)`?` |
-| `scheduleId`         | `string?`                                                    |
-| `showRemainingSlots` | `boolean`                                                    |
-| `slotSizeMax`        | `int`                                                        |
-| `timeSlots`          | `int`                                                        |
+| Name                 | Type                                                               |
+| -------------------- | ------------------------------------------------------------------ |
+| `type`               | [`EventType`](#eventtype)                                          |
+| `bookingStop`        | `int`                                                              |
+| `bufferTimeAfter`    | `int`                                                              |
+| `bufferTimeBefore`   | `int`                                                              |
+| `dateRangeFrom`      | `DateTime`                                                         |
+| `dateRangeTo`        | `DateTime`                                                         |
+| `duration`           | `int`                                                              |
+| `location`           | [`EventLocationInput`](#eventlocationinput)                        |
+| `schedule`           | <code><a href="#eventscheduleinput">EventScheduleInput</a>?</code> |
+| `scheduleId`         | `string?`                                                          |
+| `showRemainingSlots` | `boolean`                                                          |
+| `slotSizeMax`        | `int`                                                              |
+| `timeSlots`          | `int`                                                              |
 
 > Either `schedule` or `scheduleId` can be set, but not both.
 
-### `ProductEventLocationInput`
+### `EventLocationInput`
 
 | Name   | Type                                      |
 | ------ | ----------------------------------------- |
 | `type` | [`EventLocationType`](#eventlocationtype) |
 | `meta` | `Dict[string, string]`                    |
 
-### `ProductEventScheduleInput`
+### `EventScheduleInput`
 
-| Name       | Type                              |
-| ---------- | --------------------------------- |
-| `name`     | `string`                          |
-| `schedule` | `[[`[`TimeRange`](#timerange)`]]` |
+| Name       | Type                                                |
+| ---------- | --------------------------------------------------- |
+| `name`     | `string`                                            |
+| `schedule` | <code>[[<a href="#timerange">TimeRange</a>]]</code> |
 
 ## Models
 
@@ -238,8 +249,8 @@ Delete a product with a given slug.
 | `price`          | `int`                              |
 | `owner`          | `boolean`                          |
 | `purchased`      | `boolean`                          |
-| `bannerResource` | [`Resource`](#resource)`]          |
-| `imageResource`  | [`Resource`](#resource)`]          |
+| `bannerResource` | [`Resource`](#resource)`?`         |
+| `imageResource`  | [`Resource`](#resource)`?`         |
 | `fileData`       | `[`[`Resource`](#resource)`]?`     |
 | `eventData`      | [`ProductEvent`](#productevent)`?` |
 | `bundleData`     | `[`[`Product`](#product)`]?`       |
@@ -254,20 +265,20 @@ Delete a product with a given slug.
 
 ### `ProductEvent`
 
-| Name                 | Type                                            |
-| -------------------- | ----------------------------------------------- |
-| `type`               | [`EventType`](#eventtype)                       |
-| `bookingStop`        | `int`                                           |
-| `bufferTimeAfter`    | `int`                                           |
-| `bufferTimeBefore`   | `int`                                           |
-| `dateRangeFrom`      | `DateTime`                                      |
-| `dateRangeTo`        | `DateTime`                                      |
-| `duration`           | `int`                                           |
-| `location`           | [`ProductEventLocation`](#producteventlocation) |
-| `schedule`           | [`ProductEventSchedule`](#producteventschedule) |
-| `showRemainingSlots` | `boolean`                                       |
-| `slotSizeMax`        | `int`                                           |
-| `timeSlots`          | `int`                                           |
+| Name                 | Type                              |
+| -------------------- | --------------------------------- |
+| `type`               | [`EventType`](#eventtype)         |
+| `bookingStop`        | `int`                             |
+| `bufferTimeAfter`    | `int`                             |
+| `bufferTimeBefore`   | `int`                             |
+| `dateRangeFrom`      | `DateTime`                        |
+| `dateRangeTo`        | `DateTime`                        |
+| `duration`           | `int`                             |
+| `location`           | [`EventLocation`](#eventlocation) |
+| `schedule`           | [`EventSchedule`](#eventschedule) |
+| `showRemainingSlots` | `boolean`                         |
+| `slotSizeMax`        | `int`                             |
+| `timeSlots`          | `int`                             |
 
 ### `ProductEventLocation`
 
@@ -278,11 +289,11 @@ Delete a product with a given slug.
 
 ### `ProductEventSchedule`
 
-| Name       | Type                              |
-| ---------- | --------------------------------- |
-| `id`       | `string`                          |
-| `name`     | `string`                          |
-| `schedule` | `[[`[`TimeRange`](#timerange)`]]` |
+| Name       | Type                                                |
+| ---------- | --------------------------------------------------- |
+| `id`       | `string`                                            |
+| `name`     | `string`                                            |
+| `schedule` | <code>[[<a href="#timerange">TimeRange</a>]]</code> |
 
 ### `Resource`
 
