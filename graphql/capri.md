@@ -10,7 +10,7 @@ Get a list of products for a given account name. If no account name is given, th
 
 | Name          | Type      |
 | ------------- | --------- |
-| `accountName` | `string?` |
+| `accountSlug` | `string?` |
 
 **Output**
 
@@ -230,6 +230,10 @@ Create a new booking for a given product.
 The created booking.
 
 [`Booking`](#booking)
+
+
+### `cancelBooking`
+
 
 
 ## Inputs
