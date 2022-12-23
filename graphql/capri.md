@@ -244,6 +244,16 @@ Cancel a given booking with the possibility to specify an optional reason.
 | `reason` | <code><a href="#bookingcancelreason">BookingCancelReason</a>?</code> |
 
 
+### `getCalendars`
+
+Get a list of all linked calendars for the currently logged in account.
+
+**Output**
+
+A list of calendars.
+
+<code>[<a href="#calendar">Calendar</a>]</code>
+
 ### `createCalendar`
 
 Link a new calendar account to the currently logged in account.
@@ -256,7 +266,11 @@ Link a new calendar account to the currently logged in account.
 
 **Output**
 
-> TODO
+A url which can be used to connect to a calendar account.
+
+| Name  | Type     |
+| ----- | -------- |
+| `url` | `string` |
 
 
 ### `updateCalendarEntry`
@@ -462,7 +476,6 @@ Represents a single bookable time slot.
 | `id`              | `string`  |
 | `name`            | `string`  |
 | `checkCollisions` | `boolean` |
-
 
 ## Enums
 
