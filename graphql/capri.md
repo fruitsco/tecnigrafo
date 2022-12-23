@@ -234,12 +234,54 @@ The created booking.
 
 ### `cancelBooking`
 
+Cancel a given booking with the possibility to specify an optional reason.
+
 **Input**
 
 | Name     | Type                                                                 |
 | -------- | -------------------------------------------------------------------- |
 | `id`     | `string`                                                             |
 | `reason` | <code><a href="#bookingcancelreason">BookingCancelReason</a>?</code> |
+
+
+### `linkCalendar`
+
+Link a new calendar to the currently logged in account.
+
+**Input**
+
+| Name              | Type                                    |
+| ----------------- | --------------------------------------- |
+| `name`            | `string`                                |
+| `detectCollision` | `boolean`                               |
+| `provider`        | [`CalendarProvider`](#calendarprovider) |
+
+**Output**
+
+[`Calendar`](#calendar)
+
+
+### `updateCalendar`
+
+Update an existing calendar of the currently logged in account.
+
+**Input**
+
+| Name              | Type       |
+| ----------------- | ---------- |
+| `id`              | `string`   |
+| `name`            | `string?`  |
+| `detectCollision` | `boolean?` |
+
+### `setDefaultCalendar`
+
+Change the default calendar for the currently logged in account.
+
+**Input**
+
+| Name         | Type     |
+| ------------ | -------- |
+| `calendarId` | `string` |
 
 ## Inputs
 
@@ -395,6 +437,12 @@ Represents a single bookable time slot.
 | `location`  | [`EventLocation`](#eventlocation) |
 | `createdAt` | `DateTime`                        |
 
+### `Calendar`
+
+| Name | Type     |
+| ---- | -------- |
+| `id` | `string` |
+
 ## Enums
 
 ### `ProductType`
@@ -439,3 +487,10 @@ Represents a single bookable time slot.
 | ------------- |
 | `REBOOKING`   |
 | `UNAVAILABLE` |
+
+### `CalendarProvider`
+
+| Name           |
+| -------------- |
+| `GOOGLE`       |
+| `APPLE_ICLOUD` |
