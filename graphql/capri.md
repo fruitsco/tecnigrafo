@@ -211,6 +211,27 @@ The created event schedule.
 [`EventSchedule`](#eventschedule)
 
 
+### `createBooking`
+
+Create a new booking for a given product.
+
+> If the product type is not `event`, an error is thrown.
+
+**Input**
+
+| Name                | Type                      |
+| ------------------- | ------------------------- |
+| `slug`              | `string`                  |
+| `parentProductSlug` | `string`                  |
+| `time`              | [`TimeRange`](#timerange) |
+
+**Output**
+
+The created booking.
+
+[`Booking`](#booking)
+
+
 ## Inputs
 
 ### `ResourceInput`
@@ -234,7 +255,7 @@ The created event schedule.
 | `location`           | [`EventLocationInput`](#eventlocationinput)                        |
 | `schedule`           | <code><a href="#eventscheduleinput">EventScheduleInput</a>?</code> |
 | `scheduleId`         | `string?`                                                          |
-| `showRemainingSlots` | `boolean`                                                           |
+| `showRemainingSlots` | `boolean`                                                          |
 | `slotSizeMax`        | `int`                                                              |
 | `timeSlots`          | `int`                                                              |
 
@@ -271,7 +292,7 @@ The created event schedule.
 | `imageResource`  | <code><a href="#resource">Resource<a>?</code>         |
 | `fileData`       | <code>[<a href="#resource">Resource<a>]?</code>       |
 | `eventData`      | <code><a href="#productevent">ProductEvent<a>?</code> |
-| `bundleData`     | <code>[<a href="#product">Product<a>]?</code>           |
+| `bundleData`     | <code>[<a href="#product">Product<a>]?</code>         |
 
 > `owner` is `true`, if the currently logged-in user is the owner of the product, `false` otherwise.
 
