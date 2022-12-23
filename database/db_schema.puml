@@ -1,0 +1,412 @@
+@startuml Fruits Schema
+
+
+package _Roma {
+    entity User {
+        * id: uuid <<generated>>
+        --
+        * email: string
+        firstname: string
+        lastname: string
+        active_campaign_id: string
+        * created_at: timestamp
+        * updated_at: timestamp
+        deleted_at: timestamp
+    }
+
+    entity Account {
+        * id: uuid <<generated>>
+        --
+        * type: AccountType
+        * slug: string
+        * created_at: timestamp
+        * updated_at: timestamp
+        deleted_at: timestamp
+    }
+
+    entity AccountInformation {
+        * account_id: uuid
+        --
+        * name: string
+        * email: string
+        * terms_accepted: boolean
+        * privacy_accepted: boolean
+        company_number: string
+        * bank_account_iban: string
+        * bank_account_bic: string
+        ' Address
+        * address_name: string
+        * address_street: string
+        * address_zip: string
+        * address_city: string
+        * address_country: string
+        ' Contact
+        * contact_firstname: string
+        * contact_lastname: string
+        * contact_email: string
+        * contact_birthday: string
+        * contact_country_nationality: string
+        * contact_country_residence: string
+    }
+
+    entity AccountUser {
+        * user_id: uuid <<FK>>
+        * account_id: uuid <<FK>>
+        --
+        * role: UserRole
+    }
+
+    enum AccountType {
+        INDIVIDUAL
+        BUSINESS
+    }
+
+    enum UserRole {
+        ADMIN
+        MODERATOR
+        VIEWER
+    }
+}
+
+package _Capri {
+
+    package _Dummy {
+        entity CapriAccount {
+            * id: uuid <<generated>>
+            --
+            * legacy_account_id: uuid {id}
+            default_calendar_id: uuid <<FK>> {id}
+        }
+    }
+
+    package _Calendar {
+        entity AccountOauth {
+            * id: uuid <<generated>>
+            --
+            * account_id: uuid <<FK>>
+            * oauth_provider: OAuthProvider
+            * oauth_account_name: string {id}
+            * oauth_token: string
+            * created_at: timestamp
+            * updated_at: timestamp
+        }
+
+        entity AccountCalendars {
+            * id: uuid <<generated>>
+            --
+            * account_id: uuid <<FK>>
+            * oauth_account_id: uuid <<FK>>
+            * calendar_id: string {id}
+            * calendar_name: string {id}
+            * detect_collisions: boolean
+            * created_at: timestamp
+            * updated_at: timestamp
+        }
+
+        enum OAuthProvider {
+            GOOGLE
+            APPLE_ICLOUD
+            ' TODO more providers
+        }
+    }
+
+    package _Generic {
+        entity Resource {
+            * id: uuid <<generated>>
+            --
+            * name: string
+            * filename: string
+            * mime: string
+            * checksum: string
+            * size: integer
+            * created_at: timestamp
+            * updated_at: timestamp
+            deleted_at: timestamp
+        }
+    }
+
+    package _Cockpit {
+        entity CockpitSession {
+            * id: uuid <<generated>>
+            --
+            * type: ProductType
+            account_id: uuid <<FK>>
+            * created_at: uuid
+            * updated_at: uuid
+            deleted_at: uuid
+        }
+    }
+
+    package _Product {
+        entity Product {
+            * id: uuid <<generated>>
+            --
+            * account_id: uuid <<FK>>
+            ' Auto-generated product slug
+            * slug: string {id}
+            ' Product type descriminator
+            * type: ProductType
+            ' Product title
+            * name: string
+            ' Optional product description
+            description: string
+            ' Products with `null` price are free
+            price: integer
+            ' Reference to the banner image resource
+            banner_resource_id: uuid <<FK>>
+            ' Reference to the product image resource
+            image_resource_id: uuid <<FK>>
+            * created_at: timestamp
+            * updated_at: timestamp
+            deleted_at: timestamp
+        }
+
+        entity CompositeProduct {
+            * id: uuid <<generated>>
+            --
+            ' Reference to a composite product
+            * parent_id: uuid <<FK>>
+            ' Reference to a product. Make sure it's never the same as `parent_id`!
+            * product_id: uuid <<FK>>
+            ' A single product can have different names within a composite
+            name: string
+        }
+
+        enum ProductType {
+            FILE
+            EVENT
+            TICKET
+            PROJECT
+            BUNDLE
+        }
+    }
+
+    package _Report {
+        entity ProductReport {
+            * id: uuid <<generated>>
+            --
+            ' The disputed product
+            * product_id: uuid <<FK>>
+            * name: string
+            * email: string
+            * type: ReportType
+            * status: ReportStatus
+            * description: text
+            review_feedback: text
+            * created_at: timestamp
+            * updated_at: timestamp
+        }
+
+        enum ReportStatus {
+            CREATED
+            IN_REVIEW
+            ACCEPTED
+            REJECTED
+        }
+
+        enum ReportType {
+            COPYRIGHT
+            ABUSE
+        }
+    }
+
+    package _File {
+        entity ProductContentFileResource {
+            * product_id: uuid <<FK>>
+            * resource_id: uuid <<FK>> {id}
+            --
+            name: string
+        }
+    }
+
+    package _Event {
+        entity ProductContentEvent {
+            * product_id: uuid <<FK>>
+            --
+            * type: EventType
+            * duration: integer
+            * schedule_id: uuid <<FK>>
+            ' Group call options
+            slot_size_max: integer
+            show_remaining_slots: boolean
+            ' Location
+            * location_id: uuid <<FK>>
+            ' Schedule
+            * colab_id: uuid <<FK>>
+            ' Colaboration
+            * schedule_id: uuid <<FK>>
+            ' Buffer time
+            buffer_time_before: number
+            buffer_time_after: number
+            ' Date range
+            date_range_from: datetime
+            date_range_to: datetime
+            ' Time slots
+            time_slots: integer
+            ' Booking stop
+            booking_stop: integer
+        }
+
+        entity EventSchedule {
+            * id: uuid <<generated>>
+            --
+            ' Name of the schedule.
+            name: string
+            ' Account id for account-speciic schedules.
+            ' If `null`, it's a shared schedule.
+            account_id: uuid <<FK>>
+            ' The schedule payload
+            * schedule: json
+            * created_at: timestamp
+            * updated_at: timestamp
+            deleted_at: timestamp
+        }
+
+        enum EventType {
+            SINGLE
+            GROUP
+        }
+
+        entity Booking {
+            * id: uuid <<generated>>
+            --
+            ' The product the booking belongs to
+            * product_id: uuid <<FK>>
+            ' The purchase the booking belongs to
+            ' * purchase_id: uuid <<FK>>
+            ' The composite product the booking belongs to. Only set if
+            ' the booking belongs to a product within a bundle, `null` otherwise.
+            composite_product_id: uuid <<FK>>
+            ' A human-readable booking number which is unique to the booking
+            * code: string {id}
+            * created_at: timestamp
+            * updated_at: timestamp
+            cancelled_at: timestamp
+        }
+
+        entity BookingTime {
+            * id: uuid <<generated>>
+            --
+            * booking_id: uuid <<FK>>
+            * time_from: datetime
+            * time_to: datetime
+            * created_at: datetime
+            ' Cancellation
+            cancelled_at: datetime
+            cancelled_by_owner: boolean
+        }
+
+        entity ProductEventLocation {
+            * id: uuid <<generated>>
+            --
+            * location: EventLocation
+            * location_meta: json
+            
+        }
+
+        enum EventLocation {
+            FRUITS_MEET
+            GOOGLE_MEET
+            ZOOM
+            WHEREBY
+            MICROSOFT_TEAMS
+            WEBEX
+            IN_PERSON
+            PHONE_CALL
+            CUSTOM
+        }
+    }
+}
+
+package _Milano {
+    entity Cart {
+        * id: uuid <<generated>>
+        --
+        ' The product which was purchased
+        * product_id: uuid <<FK>>
+        ' The user who purchased the product
+        * user_id: uuid <<FK>>
+        ' How often was the product purchased?
+        * quantity: integer
+        * created_at: timestamp
+        * updated_at: timestamp
+    }
+
+    entity Purchase {
+        * id: uuid <<generated>>
+        --
+        ' The cart which was purchased
+        * cart_id: uuid <<FK>>
+        ' Reference to the effective payment
+        * effective_payment_id: uuid <<FK>>
+        * created_at: timestamp
+    }
+
+    entity Payment {
+        * id: uuid <<generated>>
+        --
+        * purchase_id: uuid <<FK>>
+        * state: PaymentState
+        * created_at: timestamp
+        * updated_at: timestamp
+    }
+
+    enum PaymentState {
+        CREATED
+        FAILED
+        FULFILLED
+    }
+}
+
+' User
+User ||--o{ Cart
+User ||--|{ AccountUser
+
+' Account
+Account ||--|{ AccountUser : users
+Account ||--o| AccountInformation
+Account ||--o| CapriAccount
+
+AccountOauth ||--o{ AccountCalendars
+
+
+CapriAccount ||--o{ CockpitSession
+CapriAccount ||--o{ Product : products
+CapriAccount ||--o| AccountCalendars : default
+CapriAccount ||--o{ AccountCalendars : calendars
+CapriAccount ||--o{ AccountOauth
+CapriAccount ||--o{ EventSchedule
+
+' Product
+Product ||--o{ CompositeProduct : parent
+Product ||--o{ CompositeProduct : child
+Product ||--o| ProductContentEvent : event
+Product ||--o{ ProductContentFileResource : file
+Product ||--o{ Booking : bookings
+Product ||--o{ ProductReport : reports
+Product ||--o{ Cart
+
+' Event
+EventSchedule ||--o{ ProductContentEvent
+
+' Content
+ProductContentEvent ||--|| ProductEventLocation
+
+' Purchase
+Purchase ||--o{ Booking
+Purchase ||--o{ Payment
+
+' Booking
+Booking ||--o{ BookingTime
+
+Cart ||--o| Purchase
+
+' Composite Product
+CompositeProduct ||--o{ Booking
+
+' Resource
+Resource ||--o| ProductContentFileResource : file_resources
+Resource ||--o| Product : image
+Resource ||--o| Product : banner
+
+@enduml
