@@ -104,10 +104,9 @@ Get available time slots for a given product on the given day.
 
 **Output**
 
-| Name    | Type                                              |
-| ------- | ------------------------------------------------- |
-| `date`  | `DateTime`                                        |
-| `slots` | <code>[<a href="#timerange">TimeRange</a>]</code> |
+| Name    | Type                                    |
+| ------- | --------------------------------------- |
+| `slots` | <code>[<a href="#slot">Slot</a>]</code> |
 
 ## Mutations
 
@@ -143,7 +142,7 @@ Create a product with a certain type. For now, it can be either a `file`, an `ev
 | `price`       | `int`                                                            |
 | `type`        | [`ProductType`](#producttype)                                    |
 | `fileData`    | <code>[<a href="#resourceinput">ResourceInput<a>]?</code>        |
-| `eventData`   | <code><a href="#producteventinput">ProductEventInput</a>?</code> |
+| `eventData`   | <code><a href="#eventinput">EventInput</a>?</code> |
 | `bundleData`  | `[string]?`                                                      |
 
 > If `type` is *) `event`, `eventData` must be set, *) `file`, `fileData` must be set and *) `bundle`, `bundleData` must be set.
@@ -170,7 +169,7 @@ Update a product with a given slug.
 | `enabled`        | `boolean?`                                                       |
 | `bannerResource` | <code><a href="#resourceinput">ResourceInput</a>?</code>         |
 | `imageResource`  | <code><a href="#resourceinput">ResourceInput</a>?</code>         |
-| `eventData`      | <code><a href="#producteventinput">ProductEventInput</a>?</code> |
+| `eventData`      | <code><a href="#eventinput">EventInput</a>?</code> |
 | `bundleData`     | `[string]?`                                                      |
 
 > `eventData` may be set only if `type` is `event`. Same for `bundle` and `bundleData`.
@@ -202,7 +201,7 @@ Delete a product with a given slug.
 | `name`       | `string?` |
 | `resourceId` | `string`  |
 
-### `ProductEventInput`
+### `EventInput`
 
 | Name                 | Type                                                               |
 | -------------------- | ------------------------------------------------------------------ |
@@ -265,29 +264,29 @@ Delete a product with a given slug.
 
 ### `ProductEvent`
 
-| Name                 | Type                              |
-| -------------------- | --------------------------------- |
-| `type`               | [`EventType`](#eventtype)         |
-| `bookingStop`        | `int`                             |
-| `bufferTimeAfter`    | `int`                             |
-| `bufferTimeBefore`   | `int`                             |
-| `dateRangeFrom`      | `DateTime`                        |
-| `dateRangeTo`        | `DateTime`                        |
-| `duration`           | `int`                             |
+| Name                 | Type                                            |
+| -------------------- | ----------------------------------------------- |
+| `type`               | [`EventType`](#eventtype)                       |
+| `bookingStop`        | `int`                                           |
+| `bufferTimeAfter`    | `int`                                           |
+| `bufferTimeBefore`   | `int`                                           |
+| `dateRangeFrom`      | `DateTime`                                      |
+| `dateRangeTo`        | `DateTime`                                      |
+| `duration`           | `int`                                           |
 | `location`           | [`EventLocation`](#eventlocation) |
 | `schedule`           | [`EventSchedule`](#eventschedule) |
-| `showRemainingSlots` | `boolean`                         |
-| `slotSizeMax`        | `int`                             |
-| `timeSlots`          | `int`                             |
+| `showRemainingSlots` | `boolean`                                       |
+| `slotSizeMax`        | `int`                                           |
+| `timeSlots`          | `int`                                           |
 
-### `ProductEventLocation`
+### `EventLocation`
 
 | Name   | Type                                      |
 | ------ | ----------------------------------------- |
 | `type` | [`EventLocationType`](#eventlocationtype) |
 | `meta` | `[string : string]`                       |
 
-### `ProductEventSchedule`
+### `EventSchedule`
 
 | Name       | Type                                                |
 | ---------- | --------------------------------------------------- |
@@ -307,6 +306,15 @@ Represents a single file resource stored by fruits. Can be either a file availab
 | `mime` | `string` |
 | `url`  | `string` |
 
+### `Slot`
+
+Represents a single bookable slot.
+
+| Name             | Type                      |
+| ---------------- | ------------------------- |
+| `availableSlots` | `int?`                    |
+| `range`          | [`TimeRange`](#timerange) |
+
 ### `SafeResource`
 
 Represents a reference to a file purchased by a consumer. It is safe to return to consumers, as it does not contain sensitive information such as the resource id. The `downloadUrl` is a temporary link to the downloadable file.
@@ -320,10 +328,10 @@ Represents a reference to a file purchased by a consumer. It is safe to return t
 
 ### `TimeRange`
 
-| Name   | Type       |
-| ------ | ---------- |
-| `from` | `DateTime` |
-| `to`   | `DateTime` |
+| Name       | Type       |
+| ---------- | ---------- |
+| `timeFrom` | `DateTime` |
+| `timeTo`   | `DateTime` |
 
 ### `Booking`
 
@@ -335,7 +343,7 @@ Represents a reference to a file purchased by a consumer. It is safe to return t
 | `startTime` | `DateTime`                                      |
 | `endTime`   | `DateTime`                                      |
 | `user`      | [`User`](#user)                                 |
-| `location`  | [`ProductEventLocation`](#producteventlocation) |
+| `location`  | [`EventLocation`](#eventlocation) |
 | `createdAt` | `DateTime`                                      |
 
 ## Enums
