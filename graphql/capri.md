@@ -303,9 +303,9 @@ Change the default calendar for the currently logged in account.
 
 **Input**
 
-| Name              | Type     |
-| ----------------- | -------- |
-| `calendarEntryId` | `string` |
+| Name | Type     |
+| ---- | -------- |
+| `id` | `string` |
 
 ## Inputs
 
@@ -463,13 +463,13 @@ Represents a single bookable time slot.
 
 ### `CalendarAccount`
 
-| Name          | Type                                                      |
-| ------------- | --------------------------------------------------------- |
-| `id`          | `string`                                                  |
-| `name`        | `string`                                                  |
-| `accountName` | `string`                                                  |
-| `provider`    | [`CalendarProvider`](#calendarprovider)                   |
-| `providerId`  | `string`                                                  |
+| Name          | Type                                            |
+| ------------- | ----------------------------------------------- |
+| `id`          | `string`                                        |
+| `name`        | `string`                                        |
+| `accountName` | `string`                                        |
+| `provider`    | [`CalendarProvider`](#calendarprovider)         |
+| `providerId`  | `string`                                        |
 | `calendars`   | <code>[<a href="#calendar">Calendar</a>]</code> |
 
 ### `Calendar`
