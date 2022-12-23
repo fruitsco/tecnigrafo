@@ -254,7 +254,7 @@ A list of calendars.
 
 <code>[<a href="#calendar">Calendar</a>]</code>
 
-### `createCalendar`
+### `linkCalendar`
 
 Link a new calendar account to the currently logged in account.
 
@@ -273,7 +273,7 @@ A url which can be used to connect to a calendar account.
 | `url` | `string` |
 
 
-### `updateCalendarEntry`
+### `updateCalendar`
 
 Update an existing calendar of the currently logged in account.
 
@@ -461,19 +461,21 @@ Represents a single bookable time slot.
 
 ### `Calendar`
 
-| Name          | Type                                            |
-| ------------- | ----------------------------------------------- |
-| `id`          | `string`                                        |
-| `name`        | `string`                                        |
-| `accountName` | `string`                                        |
-| `provider`    | [`CalendarProvider`](#calendarprovider)         |
-| `calendars`   | <code>[<a href="#calendar">Calendar</a>]</code> |
+| Name          | Type                                                      |
+| ------------- | --------------------------------------------------------- |
+| `id`          | `string`                                                  |
+| `name`        | `string`                                                  |
+| `accountName` | `string`                                                  |
+| `provider`    | [`CalendarProvider`](#calendarprovider)                   |
+| `providerId`  | `string`                                                  |
+| `calendars`   | <code>[<a href="#calendarentry">CalendarEntry</a>]</code> |
 
 ### `CalendarEntry`
 
 | Name              | Type      |
 | ----------------- | --------- |
 | `id`              | `string`  |
+| `providerId`      | `string`  |
 | `name`            | `string`  |
 | `checkCollisions` | `boolean` |
 
