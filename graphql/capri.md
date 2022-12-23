@@ -104,9 +104,9 @@ Get available time slots for a given product on the given day.
 
 **Output**
 
-A list of bookable slots.
+A list of bookable time slots.
 
-<code>[<a href="#slot">Slot</a>]</code>
+<code>[<a href="#timeslot">TimeSlot</a>]</code>
 
 ## Mutations
 
@@ -306,9 +306,9 @@ Represents a single file resource stored by fruits. Can be either a file availab
 | `mime` | `string` |
 | `url`  | `string` |
 
-### `Slot`
+### `TimeSlot`
 
-Represents a single bookable slot.
+Represents a single bookable time slot.
 
 | Name             | Type                      |
 | ---------------- | ------------------------- |
