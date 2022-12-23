@@ -222,7 +222,7 @@ Create a new booking for a given product.
 | Name                | Type                      |
 | ------------------- | ------------------------- |
 | `slug`              | `string`                  |
-| `parentProductSlug` | `string`                  |
+| `parentProductSlug` | `string?`                 |
 | `time`              | [`TimeRange`](#timerange) |
 
 **Output**
@@ -244,38 +244,36 @@ Cancel a given booking with the possibility to specify an optional reason.
 | `reason` | <code><a href="#bookingcancelreason">BookingCancelReason</a>?</code> |
 
 
-### `linkCalendar`
+### `createCalendar`
 
-Link a new calendar to the currently logged in account.
+Link a new calendar account to the currently logged in account.
 
 **Input**
 
-| Name              | Type                                    |
-| ----------------- | --------------------------------------- |
-| `name`            | `string`                                |
-| `detectCollision` | `boolean`                               |
-| `provider`        | [`CalendarProvider`](#calendarprovider) |
+| Name       | Type                                    |
+| ---------- | --------------------------------------- |
+| `provider` | [`CalendarProvider`](#calendarprovider) |
 
 **Output**
 
-[`Calendar`](#calendar)
+> TODO
 
 
-### `updateCalendar`
+### `updateCalendarEntry`
 
 Update an existing calendar of the currently logged in account.
 
 **Input**
 
-| Name              | Type       |
-| ----------------- | ---------- |
-| `id`              | `string`   |
-| `name`            | `string?`  |
-| `detectCollision` | `boolean?` |
+| Name               | Type      |
+| ------------------ | --------- |
+| `id`               | `string`  |
+| `detectCollission` | `boolean` |
+
 
 ### `deleteCalendar`
 
-Unlink and delete a existing calendar from the currently logged in account.
+Unlink and delete an existing calendar connection from the currently logged in account.
 
 **Input**
 
@@ -289,9 +287,9 @@ Change the default calendar for the currently logged in account.
 
 **Input**
 
-| Name         | Type     |
-| ------------ | -------- |
-| `calendarId` | `string` |
+| Name              | Type     |
+| ----------------- | -------- |
+| `calendarEntryId` | `string` |
 
 ## Inputs
 
@@ -449,9 +447,22 @@ Represents a single bookable time slot.
 
 ### `Calendar`
 
-| Name | Type     |
-| ---- | -------- |
-| `id` | `string` |
+| Name          | Type                                            |
+| ------------- | ----------------------------------------------- |
+| `id`          | `string`                                        |
+| `name`        | `string`                                        |
+| `accountName` | `string`                                        |
+| `provider`    | [`CalendarProvider`](#calendarprovider)         |
+| `calendars`   | <code>[<a href="#calendar">Calendar</a>]</code> |
+
+### `CalendarEntry`
+
+| Name              | Type      |
+| ----------------- | --------- |
+| `id`              | `string`  |
+| `name`            | `string`  |
+| `checkCollisions` | `boolean` |
+
 
 ## Enums
 
