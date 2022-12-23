@@ -135,15 +135,15 @@ Create a product with a certain type. For now, it can be either a `file`, an `ev
 
 **Input**
 
-| Name          | Type                                                             |
-| ------------- | ---------------------------------------------------------------- |
-| `name`        | `string`                                                         |
-| `description` | `string?`                                                        |
-| `price`       | `int`                                                            |
-| `type`        | [`ProductType`](#producttype)                                    |
-| `fileData`    | <code>[<a href="#resourceinput">ResourceInput<a>]?</code>        |
-| `eventData`   | <code><a href="#eventinput">EventInput</a>?</code> |
-| `bundleData`  | `[string]?`                                                      |
+| Name          | Type                                                      |
+| ------------- | --------------------------------------------------------- |
+| `name`        | `string`                                                  |
+| `description` | `string?`                                                 |
+| `price`       | `int`                                                     |
+| `type`        | [`ProductType`](#producttype)                             |
+| `fileData`    | <code>[<a href="#resourceinput">ResourceInput<a>]?</code> |
+| `eventData`   | <code><a href="#eventinput">EventInput</a>?</code>        |
+| `bundleData`  | `[string]?`                                               |
 
 > If `type` is *) `event`, `eventData` must be set, *) `file`, `fileData` must be set and *) `bundle`, `bundleData` must be set.
 
@@ -160,17 +160,17 @@ Update a product with a given slug.
 
 **Input**
 
-| Name             | Type                                                             |
-| ---------------- | ---------------------------------------------------------------- |
-| `slug`           | `string`                                                         |
-| `name`           | `string?`                                                        |
-| `description`    | `string?`                                                        |
-| `price`          | `int?`                                                           |
-| `enabled`        | `boolean?`                                                       |
-| `bannerResource` | <code><a href="#resourceinput">ResourceInput</a>?</code>         |
-| `imageResource`  | <code><a href="#resourceinput">ResourceInput</a>?</code>         |
-| `eventData`      | <code><a href="#eventinput">EventInput</a>?</code> |
-| `bundleData`     | `[string]?`                                                      |
+| Name             | Type                                                     |
+| ---------------- | -------------------------------------------------------- |
+| `slug`           | `string`                                                 |
+| `name`           | `string?`                                                |
+| `description`    | `string?`                                                |
+| `price`          | `int?`                                                   |
+| `enabled`        | `boolean?`                                               |
+| `bannerResource` | <code><a href="#resourceinput">ResourceInput</a>?</code> |
+| `imageResource`  | <code><a href="#resourceinput">ResourceInput</a>?</code> |
+| `eventData`      | <code><a href="#eventinput">EventInput</a>?</code>       |
+| `bundleData`     | `[string]?`                                              |
 
 > `eventData` may be set only if `type` is `event`. Same for `bundle` and `bundleData`.
 
@@ -264,20 +264,20 @@ Delete a product with a given slug.
 
 ### `ProductEvent`
 
-| Name                 | Type                                            |
-| -------------------- | ----------------------------------------------- |
-| `type`               | [`EventType`](#eventtype)                       |
-| `bookingStop`        | `int`                                           |
-| `bufferTimeAfter`    | `int`                                           |
-| `bufferTimeBefore`   | `int`                                           |
-| `dateRangeFrom`      | `DateTime`                                      |
-| `dateRangeTo`        | `DateTime`                                      |
-| `duration`           | `int`                                           |
+| Name                 | Type                              |
+| -------------------- | --------------------------------- |
+| `type`               | [`EventType`](#eventtype)         |
+| `bookingStop`        | `int`                             |
+| `bufferTimeAfter`    | `int`                             |
+| `bufferTimeBefore`   | `int`                             |
+| `dateRangeFrom`      | `DateTime`                        |
+| `dateRangeTo`        | `DateTime`                        |
+| `duration`           | `int`                             |
 | `location`           | [`EventLocation`](#eventlocation) |
 | `schedule`           | [`EventSchedule`](#eventschedule) |
-| `showRemainingSlots` | `boolean`                                       |
-| `slotSizeMax`        | `int`                                           |
-| `timeSlots`          | `int`                                           |
+| `showRemainingSlots` | `boolean`                         |
+| `slotSizeMax`        | `int`                             |
+| `timeSlots`          | `int`                             |
 
 ### `EventLocation`
 
@@ -306,15 +306,6 @@ Represents a single file resource stored by fruits. Can be either a file availab
 | `mime` | `string` |
 | `url`  | `string` |
 
-### `TimeSlot`
-
-Represents a single bookable time slot.
-
-| Name             | Type                      |
-| ---------------- | ------------------------- |
-| `availableSlots` | `int?`                    |
-| `range`          | [`TimeRange`](#timerange) |
-
 ### `SafeResource`
 
 Represents a reference to a file purchased by a consumer. It is safe to return to consumers, as it does not contain sensitive information such as the resource id. The `downloadUrl` is a temporary link to the downloadable file.
@@ -326,6 +317,15 @@ Represents a reference to a file purchased by a consumer. It is safe to return t
 | `mime`        | `string` |
 | `downloadUrl` | `string` |
 
+### `TimeSlot`
+
+Represents a single bookable time slot.
+
+| Name             | Type                      |
+| ---------------- | ------------------------- |
+| `availableSlots` | `int?`                    |
+| `range`          | [`TimeRange`](#timerange) |
+
 ### `TimeRange`
 
 | Name       | Type       |
@@ -335,16 +335,16 @@ Represents a reference to a file purchased by a consumer. It is safe to return t
 
 ### `Booking`
 
-| Name        | Type                                            |
-| ----------- | ----------------------------------------------- |
-| `id`        | `string`                                        |
-| `cancelled` | `boolean`                                       |
-| `duration`  | `int`                                           |
-| `startTime` | `DateTime`                                      |
-| `endTime`   | `DateTime`                                      |
-| `user`      | [`User`](#user)                                 |
+| Name        | Type                              |
+| ----------- | --------------------------------- |
+| `id`        | `string`                          |
+| `cancelled` | `boolean`                         |
+| `duration`  | `int`                             |
+| `startTime` | `DateTime`                        |
+| `endTime`   | `DateTime`                        |
+| `user`      | [`User`](#user)                   |
 | `location`  | [`EventLocation`](#eventlocation) |
-| `createdAt` | `DateTime`                                      |
+| `createdAt` | `DateTime`                        |
 
 ## Enums
 
