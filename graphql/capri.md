@@ -142,7 +142,7 @@ Create a product with a certain type. For now, it can be either a `file`, an `ev
 | `description` | `string?`                                                        |
 | `price`       | `int`                                                            |
 | `type`        | [`ProductType`](#producttype)                                    |
-| `fileData`    | <code><a href="#resourceinput">ResourceInput<a>]?</code>         |
+| `fileData`    | <code>[<a href="#resourceinput">ResourceInput<a>]?</code>        |
 | `eventData`   | <code><a href="#producteventinput">ProductEventInput</a>?</code> |
 | `bundleData`  | `[string]?`                                                      |
 
@@ -227,7 +227,7 @@ Delete a product with a given slug.
 | Name   | Type                                      |
 | ------ | ----------------------------------------- |
 | `type` | [`EventLocationType`](#eventlocationtype) |
-| `meta` | `Dict[string, string]`                    |
+| `meta` | `[string : string]`                       |
 
 ### `EventScheduleInput`
 
@@ -240,20 +240,20 @@ Delete a product with a given slug.
 
 ### `Product`
 
-| Name             | Type                               |
-| ---------------- | ---------------------------------- |
-| `slug`           | `string`                           |
-| `type`           | [`ProductType`](#producttype)      |
-| `name`           | `string`                           |
-| `description`    | `string?`                          |
-| `price`          | `int`                              |
-| `owner`          | `boolean`                          |
-| `purchased`      | `boolean`                          |
-| `bannerResource` | [`Resource`](#resource)`?`         |
-| `imageResource`  | [`Resource`](#resource)`?`         |
-| `fileData`       | `[`[`Resource`](#resource)`]?`     |
-| `eventData`      | [`ProductEvent`](#productevent)`?` |
-| `bundleData`     | `[`[`Product`](#product)`]?`       |
+| Name             | Type                                                  |
+| ---------------- | ----------------------------------------------------- |
+| `slug`           | `string`                                              |
+| `type`           | [`ProductType`](#producttype)                         |
+| `name`           | `string`                                              |
+| `description`    | `string?`                                             |
+| `price`          | `int`                                                 |
+| `owner`          | `boolean`                                             |
+| `purchased`      | `boolean`                                             |
+| `bannerResource` | <code><a href="#resource">Resource<a>?</code>         |
+| `imageResource`  | <code><a href="#resource">Resource<a>?</code>         |
+| `fileData`       | <code>[<a href="#resource">Resource<a>]?</code>       |
+| `eventData`      | <code><a href="#productevent">ProductEvent<a>?</code> |
+| `bundleData`     | <code><a href="#product">Product<a>?</code>           |
 
 > `owner` is `true`, if the currently logged-in user is the owner of the product, `false` otherwise.
 
@@ -285,7 +285,7 @@ Delete a product with a given slug.
 | Name   | Type                                      |
 | ------ | ----------------------------------------- |
 | `type` | [`EventLocationType`](#eventlocationtype) |
-| `meta` | `Dict[string, string]`                    |
+| `meta` | `[string : string]`                       |
 
 ### `ProductEventSchedule`
 
@@ -327,16 +327,16 @@ Represents a reference to a file purchased by a consumer. It is safe to return t
 
 ### `Booking`
 
-| Name        | Type                                                  |
-| ----------- | ----------------------------------------------------- |
-| `id`        | `string`                                              |
-| `cancelled` | `boolean`                                             |
-| `duration`  | `int`                                                 |
-| `startTime` | `DateTime`                                            |
-| `endTime`   | `DateTime`                                            |
-| `user`      | `[`[`User`](#user)`]`                                 |
-| `createdAt` | `DateTime`                                            |
-| `location`  | `[`[`ProductEventLocation`](#producteventlocation)`]` |
+| Name        | Type                                            |
+| ----------- | ----------------------------------------------- |
+| `id`        | `string`                                        |
+| `cancelled` | `boolean`                                       |
+| `duration`  | `int`                                           |
+| `startTime` | `DateTime`                                      |
+| `endTime`   | `DateTime`                                      |
+| `user`      | [`User`](#user)                                 |
+| `location`  | [`ProductEventLocation`](#producteventlocation) |
+| `createdAt` | `DateTime`                                      |
 
 ## Enums
 
