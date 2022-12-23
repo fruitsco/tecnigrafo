@@ -6,13 +6,13 @@
 
 Get a list of products for a given account name. If no account name is given, the currently logged-in user's own products are returned.
 
-#### Input
+**Input**
 
 | Name          | Type      |
 | ------------- | --------- |
 | `accountName` | `string?` |
 
-#### Output
+**Output**
 
 A list of products.
 
@@ -23,13 +23,13 @@ A list of products.
 
 Get a product with the given slug.
 
-#### Input
+**Input**
 
 | Name   | Type     |
 | ------ | -------- |
 | `slug` | `string` |
 
-#### Output
+**Output**
 
 The product, if it was found.
 
@@ -40,13 +40,13 @@ The product, if it was found.
 
 Get a list of files for a given product slug if the current user either purchased the item or is the owner.
 
-#### Input
+**Input**
 
 | Name   | Type     |
 | ------ | -------- |
 | `slug` | `string` |
 
-#### Output
+**Output**
 
 | Name    | Type                            |
 | ------- | ------------------------------- |
@@ -58,13 +58,13 @@ Get bookings for a given product slug if the current user purchased the item. As
 
 > If the product type is not `event`, an error is thrown.
 
-#### Input
+**Input**
 
 | Name   | Type     |
 | ------ | -------- |
 | `slug` | `string` |
 
-#### Output
+**Output**
 
 A list of bookings for the given product.
 
@@ -77,13 +77,13 @@ Get days on which a given product is available for booking.
 
 > If the product type is not `event`, an error is thrown.
 
-#### Input
+**Input**
 
 | Name   | Type     |
 | ------ | -------- |
 | `slug` | `string` |
 
-#### Output
+**Output**
 
 | Name    | Type         |
 | ------- | ------------ |
@@ -95,14 +95,14 @@ Get available time slots for a given product on the given day.
 
 > If the product type is not `event`, an error is thrown.
 
-#### Input
+**Input**
 
 | Name   | Type       |
 | ------ | ---------- |
 | `slug` | `string`   |
 | `date` | `DateTime` |
 
-#### Output
+**Output**
 
 | Name    | Type                                              |
 | ------- | ------------------------------------------------- |
@@ -115,14 +115,14 @@ Get available time slots for a given product on the given day.
 
 Initialize a generic file upload.
 
-#### Input
+**Input**
 
 | Name       | Type                          |
 | ---------- | ----------------------------- |
 | `fileName` | `string`                      |
 | `context`  | [`FileContext`](#filecontext) |
 
-#### Output
+**Output**
 
 | Name         | Type     |
 | ------------ | -------- |
@@ -134,7 +134,7 @@ Initialize a generic file upload.
 
 Create a product with a certain type. For now, it can be either a `file`, an `event` or a `bundle`.
 
-#### Input
+**Input**
 
 | Name          | Type                                                             |
 | ------------- | ---------------------------------------------------------------- |
@@ -148,7 +148,7 @@ Create a product with a certain type. For now, it can be either a `file`, an `ev
 
 > If `type` is *) `event`, `eventData` must be set, *) `file`, `fileData` must be set and *) `bundle`, `bundleData` must be set.
 
-#### Output
+**Output**
 
 The created product.
 
@@ -159,7 +159,7 @@ The created product.
 
 Update a product with a given slug.
 
-#### Input
+**Input**
 
 | Name             | Type                                                             |
 | ---------------- | ---------------------------------------------------------------- |
@@ -175,7 +175,7 @@ Update a product with a given slug.
 
 > `eventData` may be set only if `type` is `event`. Same for `bundle` and `bundleData`.
 
-#### Output
+**Output**
 
 The updated product.
 
@@ -186,7 +186,7 @@ The updated product.
 
 Delete a product with a given slug.
 
-#### Input
+**Input**
 
 | Name   | Type     |
 | ------ | -------- |
