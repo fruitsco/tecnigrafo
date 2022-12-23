@@ -273,6 +273,16 @@ Update an existing calendar of the currently logged in account.
 | `name`            | `string?`  |
 | `detectCollision` | `boolean?` |
 
+### `deleteCalendar`
+
+Unlink and delete a existing calendar from the currently logged in account.
+
+**Input**
+
+| Name | Type     |
+| ---- | -------- |
+| `id` | `string` |
+
 ### `setDefaultCalendar`
 
 Change the default calendar for the currently logged in account.
