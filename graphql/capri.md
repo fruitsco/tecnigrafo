@@ -21,7 +21,7 @@ A list of products.
 
 ### `getProduct`
 
-Get a product with the given slug.
+Get a product with the given slug. If the user is not authenticated, certain features are restricted.
 
 **Input**
 
@@ -48,13 +48,11 @@ Get a list of files for a given product slug if the current user either purchase
 
 **Output**
 
-| Name    | Type                            |
-| ------- | ------------------------------- |
-| `files` | [`SafeResource`](#saferesource) |
+<code>[<a href="#product">SafeResource</a>]</code>
 
 ### `getBookings`
 
-Get bookings for a given product slug if the current user purchased the item. As a user can purchase and book a event multiple times, a list of bookings is returned.
+Get bookings for a given product slug if the current user is the owner of the product. If the user purchased the product, all bookings for the product are returned. Incase no slug is provided, a producer gets all bookings for his products and a user gets all bookings for his account.
 
 > If the product type is not `event`, an error is thrown.
 
@@ -62,7 +60,7 @@ Get bookings for a given product slug if the current user purchased the item. As
 
 | Name   | Type     |
 | ------ | -------- |
-| `slug` | `string` |
+| `slug` | `string?` |
 
 **Output**
 
@@ -85,13 +83,13 @@ Get days on which a given product is available for booking.
 
 **Output**
 
-| Name    | Type         |
-| ------- | ------------ |
-| `dates` | `[DateTime]` |
+
+<code>[DateTime]</code>
 
 ### `getBookableSlots`
 
 Get available time slots for a given product on the given day.
+If calendars are linked those events are used to filter. If no calendars are linked, the product's availability is used.
 
 > If the product type is not `event`, an error is thrown.
 
@@ -141,9 +139,9 @@ Create a product with a certain type. For now, it can be either a `file`, an `ev
 | `description` | `string?`                                                 |
 | `price`       | `int`                                                     |
 | `type`        | [`ProductType`](#producttype)                             |
-| `fileData`    | <code>[<a href="#resourceinput">ResourceInput<a>]?</code> |
+| `fileData`    | <code>[<a href="#resourceinput">ResourceInput<a>]</code>? |
 | `eventData`   | <code><a href="#eventinput">EventInput</a>?</code>        |
-| `bundleData`  | `[string]?`                                               |
+| `bundleData`  | `[slugs]?`                                                |
 
 > If `type` is *) `event`, `eventData` must be set, *) `file`, `fileData` must be set and *) `bundle`, `bundleData` must be set.
 
@@ -170,7 +168,7 @@ Update a product with a given slug.
 | `bannerResource` | <code><a href="#resourceinput">ResourceInput</a>?</code> |
 | `imageResource`  | <code><a href="#resourceinput">ResourceInput</a>?</code> |
 | `eventData`      | <code><a href="#eventinput">EventInput</a>?</code>       |
-| `bundleData`     | `[string]?`                                              |
+| `bundleData`     | `[slug]?`                                                |
 
 > `eventData` may be set only if `type` is `event`. Same for `bundle` and `bundleData`.
 
