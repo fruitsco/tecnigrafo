@@ -298,7 +298,7 @@ Update an existing calendar of the currently logged in account.
 | ------------------ | --------- |
 | `id`               | `string`  |
 | `detectCollission` | `boolean` |
-| `detectCollission` | `boolean` |
+| `update_events`    | `boolean` |
 
 
 ### `setDefaultCalendar`
@@ -484,6 +484,7 @@ Represents a single bookable time slot.
 | `providerId`      | `string`  |
 | `name`            | `string`  |
 | `checkCollisions` | `boolean` |
+| `updateEvents`    | `boolean` |
 
 ## Enums
 
