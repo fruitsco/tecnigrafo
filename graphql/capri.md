@@ -245,6 +245,11 @@ Cancel a given booking with the possibility to specify an optional reason.
 ### `getCalendarAccounts`
 
 Get a list of all linked calendar accounts for the currently logged in account.
+**Input**
+| Name       | Type                                    |
+| ---------- | --------------------------------------- |
+| `provider` | [`CalendarProvider`](#calendarprovider) |
+| `type`     | [`CalendarType`](#calendarprovider)     |
 
 **Output**
 
@@ -292,6 +297,7 @@ Update an existing calendar of the currently logged in account.
 | Name               | Type      |
 | ------------------ | --------- |
 | `id`               | `string`  |
+| `detectCollission` | `boolean` |
 | `detectCollission` | `boolean` |
 
 
@@ -530,3 +536,10 @@ Represents a single bookable time slot.
 | -------------- |
 | `GOOGLE`       |
 | `APPLE_ICLOUD` |
+
+### `CalendarType`
+
+| Name           |
+| -------------- |
+| `REMOTE`       |
+| `LINKED`       |
