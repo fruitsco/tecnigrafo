@@ -114,13 +114,14 @@ package _Capri {
         entity Resource {
             * id: uuid <<generated>>
             --
-            * name: string
             * filename: string
             * mime: string
             * checksum: string
             * size: integer
+            * account_id: string
             * created_at: timestamp
             * updated_at: timestamp
+            * claimed: timestamp
             deleted_at: timestamp
         }
     }
@@ -149,6 +150,7 @@ package _Capri {
             ' Product title
             * name: string
             ' Optional product description
+            * enabled: boolean
             description: string
             ' Products with `null` price are free
             price: integer
@@ -277,6 +279,7 @@ package _Capri {
             ' The composite product the booking belongs to. Only set if
             ' the booking belongs to a product within a bundle, `null` otherwise.
             composite_product_id: uuid <<FK>>
+            * account_id: string
             ' A human-readable booking number which is unique to the booking
             * code: string {id}
             * created_at: timestamp
