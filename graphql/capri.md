@@ -58,8 +58,8 @@ Get bookings for a given product slug if the current user is the owner of the pr
 
 **Input**
 
-| Name   | Type     |
-| ------ | -------- |
+| Name   | Type      |
+| ------ | --------- |
 | `slug` | `string?` |
 
 **Output**
@@ -108,24 +108,40 @@ A list of bookable time slots.
 
 ## Mutations
 
+
+### `initCockpitSession`
+
+Initialize a fresh cockpit session.
+
+**Output**
+
+| Name            | Type     | Description                                         |
+| --------------- | -------- | --------------------------------------------------- |
+| `sessionId`     | `string` | The unique cockpit session id                       |
+| `maxUploadSize` | `int`    | The total max upload size in bytes for this session |
+
+
 ### `initFileUpload`
 
 Initialize a generic file upload.
 
 **Input**
 
-| Name       | Type                          |
-| ---------- | ----------------------------- |
-| `fileName` | `string`                      |
-| `context`  | [`FileContext`](#filecontext) |
+| Name        | Type                          |
+| ----------- | ----------------------------- |
+| `sessionId` | `string`                      |
+| `fileName`  | `string`                      |
+| `context`   | [`FileContext`](#filecontext) |
 
 **Output**
 
-| Name         | Type     |
-| ------------ | -------- |
-| `resourceId` | `string` |
-| `uploadUrl`  | `string` |
-
+| Name                | Type     |
+| ------------------- | -------- |
+| `fields`            | `object` |
+| `fields.resourceId` | `string` |
+| `headers`           | `object` |
+| `url`               | `string` |
+| `method`            | `string` |
 
 ### `createProduct`
 
@@ -142,6 +158,7 @@ Create a product with a certain type. For now, it can be either a `file`, an `ev
 | `fileData`    | <code>[<a href="#resourceinput">ResourceInput<a>]</code>? |
 | `eventData`   | <code><a href="#eventinput">EventInput</a>?</code>        |
 | `bundleData`  | `[slugs]?`                                                |
+| `sessionId`   | `string`                                                  |
 
 > If `type` is *) `event`, `eventData` must be set, *) `file`, `fileData` must be set and *) `bundle`, `bundleData` must be set.
 
@@ -540,7 +557,7 @@ Represents a single bookable time slot.
 
 ### `CalendarType`
 
-| Name           |
-| -------------- |
-| `REMOTE`       |
-| `LINKED`       |
+| Name     |
+| -------- |
+| `REMOTE` |
+| `LINKED` |
