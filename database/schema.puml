@@ -127,6 +127,11 @@ package _Capri {
     }
 
     package _Cockpit {
+        entity CockpitSessionResources {
+            * session_id: uuid
+            * resource_id: uuid
+        }
+
         entity CockpitSession {
             * id: uuid <<generated>>
             --
@@ -407,9 +412,13 @@ Cart ||--o| Purchase
 ' Composite Product
 CompositeProduct ||--o{ Booking
 
+' Cockpit
+CockpitSession ||--o{ CockpitSessionResources : cockpit_resoures
+
 ' Resource
 Resource ||--o| ProductContentFileResource : file_resources
 Resource ||--o| Product : image
 Resource ||--o| Product : banner
+Resource ||--o| CockpitSessionResources : cockpit_resources
 
 @enduml
