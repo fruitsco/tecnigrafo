@@ -115,10 +115,15 @@ Initialize a fresh cockpit session.
 
 **Output**
 
-| Name            | Type     | Description                                         |
-| --------------- | -------- | --------------------------------------------------- |
-| `sessionId`     | `string` | The unique cockpit session id                       |
-| `maxUploadSize` | `int`    | The total max upload size in bytes for this session |
+| Name            | Type  | Description                                         |
+| --------------- | ----- | --------------------------------------------------- |
+| `maxUploadSize` | `int` | The total max upload size in bytes for this session |
+
+**Cookies**
+
+| Name              | Type     |
+| ----------------- | -------- |
+| `cockpit_session` | `string` |
 
 
 ### `initFileUpload`
@@ -129,7 +134,6 @@ Initialize a generic file upload.
 
 | Name        | Type                          |
 | ----------- | ----------------------------- |
-| `sessionId` | `string`                      |
 | `fileName`  | `string`                      |
 | `context`   | [`FileContext`](#filecontext) |
 
@@ -159,7 +163,6 @@ Create a product with a certain type. For now, it can be either a `file`, an `ev
 | `fileData`    | <code>[<a href="#resourceinput">ResourceInput<a>]</code>? |
 | `eventData`   | <code><a href="#eventinput">EventInput</a>?</code>        |
 | `bundleData`  | `[slugs]?`                                                |
-| `sessionId`   | `string`                                                  |
 
 > If `type` is *) `event`, `eventData` must be set, *) `file`, `fileData` must be set and *) `bundle`, `bundleData` must be set.
 
