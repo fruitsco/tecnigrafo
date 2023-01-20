@@ -135,13 +135,14 @@ Initialize a generic file upload.
 
 **Output**
 
-| Name                | Type     |
-| ------------------- | -------- |
-| `fields`            | `object` |
-| `fields.resourceId` | `string` |
-| `headers`           | `object` |
-| `url`               | `string` |
-| `method`            | `string` |
+| Name                  | Type     |
+| --------------------- | -------- |
+| `fields`              | `object` |
+| `fields.resourceId`   | `string` |
+| `headers`             | `object` |
+| `url`                 | `string` |
+| `method`              | `string` |
+| `remainingUploadSize` | `number` |
 
 ### `createProduct`
 
