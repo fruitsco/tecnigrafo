@@ -12,7 +12,7 @@ Get a list of products for a given account name. If no account name is given, th
 | ------------- | --------- |
 | `accountSlug` | `string?` |
 
-**Output**
+**Response**
 
 A list of products.
 
@@ -29,7 +29,7 @@ Get a product with the given slug. If the user is not authenticated, certain fea
 | ------ | -------- |
 | `slug` | `string` |
 
-**Output**
+**Response**
 
 The product, if it was found.
 
@@ -46,7 +46,7 @@ Get a list of files for a given product slug if the current user either purchase
 | ------ | -------- |
 | `slug` | `string` |
 
-**Output**
+**Response**
 
 <code>[<a href="#product">SafeResource</a>]</code>
 
@@ -62,7 +62,7 @@ Get bookings for a given product slug if the current user is the owner of the pr
 | ------ | --------- |
 | `slug` | `string?` |
 
-**Output**
+**Response**
 
 A list of bookings for the given product.
 
@@ -81,7 +81,7 @@ Get days on which a given product is available for booking.
 | ------ | -------- |
 | `slug` | `string` |
 
-**Output**
+**Response**
 
 
 <code>[DateTime]</code>
@@ -100,7 +100,7 @@ If calendars are linked those events are used to filter. If no calendars are lin
 | `slug` | `string`   |
 | `date` | `DateTime` |
 
-**Output**
+**Response**
 
 A list of bookable time slots.
 
@@ -113,13 +113,13 @@ A list of bookable time slots.
 
 Initialize a fresh cockpit session.
 
-**Output**
+**Response**
 
 | Name            | Type  | Description                                         |
 | --------------- | ----- | --------------------------------------------------- |
 | `maxUploadSize` | `int` | The total max upload size in bytes for this session |
 
-**Cookies**
+*Set-Cookie*
 
 | Name              | Type     |
 | ----------------- | -------- |
@@ -132,12 +132,18 @@ Initialize a generic file upload.
 
 **Input**
 
-| Name        | Type                          |
-| ----------- | ----------------------------- |
-| `fileName`  | `string`                      |
-| `context`   | [`FileContext`](#filecontext) |
+| Name       | Type                          |
+| ---------- | ----------------------------- |
+| `fileName` | `string`                      |
+| `context`  | [`FileContext`](#filecontext) |
 
-**Output**
+*Auth*
+
+| Type     | Name              |
+| -------- | ----------------- |
+| `cookie` | `cockpit_session` |
+
+**Response**
 
 | Name                  | Type     |
 | --------------------- | -------- |
@@ -166,7 +172,14 @@ Create a product with a certain type. For now, it can be either a `file`, an `ev
 
 > If `type` is *) `event`, `eventData` must be set, *) `file`, `fileData` must be set and *) `bundle`, `bundleData` must be set.
 
-**Output**
+*Auth*
+
+| Type     | Name              |
+| -------- | ----------------- |
+| `cookie` | `session`         |
+| `cookie` | `cockpit_session` |
+
+**Response**
 
 The created product.
 
@@ -193,7 +206,13 @@ Update a product with a given slug.
 
 > `eventData` may be set only if `type` is `event`. Same for `bundle` and `bundleData`.
 
-**Output**
+*Auth*
+
+| Type     | Name      |
+| -------- | --------- |
+| `cookie` | `session` |
+
+**Response**
 
 The updated product.
 
@@ -210,6 +229,11 @@ Delete a product with a given slug.
 | ------ | -------- |
 | `slug` | `string` |
 
+*Auth*
+
+| Type     | Name      |
+| -------- | --------- |
+| `cookie` | `session` |
 
 ### `createEventSchedule`
 
@@ -223,7 +247,13 @@ The input to create a new event schedule.
 
 [`EventScheduleInput`](#eventscheduleinput)
 
-**Output**
+*Auth*
+
+| Type     | Name      |
+| -------- | --------- |
+| `cookie` | `session` |
+
+**Response**
 
 The created event schedule.
 
@@ -244,7 +274,13 @@ Create a new booking for a given product.
 | `parentProductSlug` | `string?`                 |
 | `time`              | [`TimeRange`](#timerange) |
 
-**Output**
+*Auth*
+
+| Type     | Name      |
+| -------- | --------- |
+| `cookie` | `session` |
+
+**Response**
 
 The created booking.
 
@@ -262,17 +298,30 @@ Cancel a given booking with the possibility to specify an optional reason.
 | `id`     | `string`                                                             |
 | `reason` | <code><a href="#bookingcancelreason">BookingCancelReason</a>?</code> |
 
+*Auth*
+
+| Type     | Name      |
+| -------- | --------- |
+| `cookie` | `session` |
 
 ### `getCalendarAccounts`
 
 Get a list of all linked calendar accounts for the currently logged in account.
+
 **Input**
+
 | Name       | Type                                    |
 | ---------- | --------------------------------------- |
 | `provider` | [`CalendarProvider`](#calendarprovider) |
 | `type`     | [`CalendarType`](#calendarprovider)     |
 
-**Output**
+*Auth*
+
+| Type     | Name      |
+| -------- | --------- |
+| `cookie` | `session` |
+
+**Response**
 
 A list of calendar accounts.
 
@@ -289,7 +338,13 @@ Link a new calendar account to the currently logged in account.
 | ---------- | --------------------------------------- |
 | `provider` | [`CalendarProvider`](#calendarprovider) |
 
-**Output**
+*Auth*
+
+| Type     | Name      |
+| -------- | --------- |
+| `cookie` | `session` |
+
+**Response**
 
 A url which can be used to connect to a calendar account.
 
@@ -308,6 +363,11 @@ Unlink and delete an existing calendar connection from the currently logged in a
 | ---- | -------- |
 | `id` | `string` |
 
+*Auth*
+
+| Type     | Name      |
+| -------- | --------- |
+| `cookie` | `session` |
 
 ### `updateCalendar`
 
@@ -331,6 +391,12 @@ Change the default calendar for the currently logged in account.
 | Name | Type     |
 | ---- | -------- |
 | `id` | `string` |
+
+*Auth*
+
+| Type     | Name      |
+| -------- | --------- |
+| `cookie` | `session` |
 
 ## Inputs
 
