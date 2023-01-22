@@ -25,9 +25,9 @@ Get a product with the given slug. If the user is not authenticated, certain fea
 
 **Input**
 
-| Name   | Type     |
-| ------ | -------- |
-| `slug` | `string` |
+| Name   | Type                                      |
+| ------ | ----------------------------------------- |
+| `slug` | [`ProductIdentifier`](#productidentifier) |
 
 **Response**
 
@@ -42,9 +42,9 @@ Get a list of files for a given product slug if the current user either purchase
 
 **Input**
 
-| Name   | Type     |
-| ------ | -------- |
-| `slug` | `string` |
+| Name   | Type                                      |
+| ------ | ----------------------------------------- |
+| `slug` | [`ProductIdentifier`](#productidentifier) |
 
 **Response**
 
@@ -58,9 +58,9 @@ Get bookings for a given product slug if the current user is the owner of the pr
 
 **Input**
 
-| Name   | Type      |
-| ------ | --------- |
-| `slug` | `string?` |
+| Name   | Type                                                             |
+| ------ | ---------------------------------------------------------------- |
+| `slug` | <code><a href="#productidentifier">ProductIdentifier</a>?</code> |
 
 **Response**
 
@@ -77,9 +77,9 @@ Get days on which a given product is available for booking.
 
 **Input**
 
-| Name   | Type     |
-| ------ | -------- |
-| `slug` | `string` |
+| Name   | Type                                      |
+| ------ | ----------------------------------------- |
+| `slug` | [`ProductIdentifier`](#productidentifier) |
 
 **Response**
 
@@ -95,10 +95,10 @@ If calendars are linked those events are used to filter. If no calendars are lin
 
 **Input**
 
-| Name   | Type       |
-| ------ | ---------- |
-| `slug` | `string`   |
-| `date` | `DateTime` |
+| Name   | Type                                      |
+| ------ | ----------------------------------------- |
+| `slug` | [`ProductIdentifier`](#productidentifier) |
+| `date` | `DateTime`                                |
 
 **Response**
 
@@ -160,15 +160,15 @@ Create a product with a certain type. For now, it can be either a `file`, an `ev
 
 **Input**
 
-| Name          | Type                                                      |
-| ------------- | --------------------------------------------------------- |
-| `name`        | `string`                                                  |
-| `description` | `string?`                                                 |
-| `price`       | `int`                                                     |
-| `type`        | [`ProductType`](#producttype)                             |
-| `fileData`    | <code>[<a href="#resourceinput">ResourceInput<a>]</code>? |
-| `eventData`   | <code><a href="#eventinput">EventInput</a>?</code>        |
-| `bundleData`  | `[slugs]?`                                                |
+| Name          | Type                                                               |
+| ------------- | ------------------------------------------------------------------ |
+| `name`        | `string`                                                           |
+| `description` | `string?`                                                          |
+| `price`       | `int`                                                              |
+| `type`        | [`ProductType`](#producttype)                                      |
+| `fileData`    | <code>[<a href="#resourceinput">ResourceInput<a>]</code>?          |
+| `eventData`   | <code><a href="#eventinput">EventInput</a>?</code>                 |
+| `bundleData`  | <code>[<a href="#ProductIdentifier">ProductIdentifier</a>]?</code> |
 
 > If `type` is *) `event`, `eventData` must be set, *) `file`, `fileData` must be set and *) `bundle`, `bundleData` must be set.
 
@@ -194,7 +194,7 @@ Update a product with a given slug.
 
 | Name             | Type                                                     |
 | ---------------- | -------------------------------------------------------- |
-| `slug`           | `string`                                                 |
+| `slug`           | [`ProductIdentifier`](#productidentifier)                |
 | `name`           | `string?`                                                |
 | `description`    | `string?`                                                |
 | `price`          | `int?`                                                   |
@@ -225,9 +225,9 @@ Delete a product with a given slug.
 
 **Input**
 
-| Name   | Type     |
-| ------ | -------- |
-| `slug` | `string` |
+| Name   | Type                                      |
+| ------ | ----------------------------------------- |
+| `slug` | [`ProductIdentifier`](#productidentifier) |
 
 *Auth*
 
@@ -268,11 +268,11 @@ Create a new booking for a given product.
 
 **Input**
 
-| Name                | Type                      |
-| ------------------- | ------------------------- |
-| `slug`              | `string`                  |
-| `parentProductSlug` | `string?`                 |
-| `time`              | [`TimeRange`](#timerange) |
+| Name                | Type                                      |
+| ------------------- | ----------------------------------------- |
+| `slug`              | [`ProductIdentifier`](#productidentifier) |
+| `parentProductSlug` | `string?`                                 |
+| `time`              | [`TimeRange`](#timerange)                 |
 
 *Auth*
 
@@ -631,3 +631,15 @@ Represents a single bookable time slot.
 | -------- |
 | `REMOTE` |
 | `LINKED` |
+
+
+## Scalars
+
+### `ProductIdentifier`
+
+This type is a string which represents a reference to a product.
+This can be either its `slug`, or its `id`.
+
+```ts
+type ProductIdentifier = String
+```
