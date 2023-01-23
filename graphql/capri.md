@@ -641,5 +641,5 @@ This type is a string which represents a reference to a product.
 This can be either its `slug`, or its `id`.
 
 ```python
-ProductIdentifier: TypeAlias = string
+ProductIdentifier: TypeAlias = str
 ```
