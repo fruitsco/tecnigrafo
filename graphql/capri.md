@@ -640,6 +640,6 @@ Represents a single bookable time slot.
 This type is a string which represents a reference to a product.
 This can be either its `slug`, or its `id`.
 
-```ts
-type ProductIdentifier = String
+```python
+ProductIdentifier: TypeAlias = string
 ```
