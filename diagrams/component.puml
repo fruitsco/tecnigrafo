@@ -1,0 +1,67 @@
+@startuml Deployment
+
+frame Vercel {
+    node Frontend {
+        component Lime
+    }
+}
+
+frame GCP {
+    node CloudSQL {
+        database Database {
+            component db_pompeii
+            component db_capri
+            component db_dante
+        }
+    }
+    node Memorystore {
+        database Cache
+    }
+    node CloudRun {
+        component Lictores
+        together {
+            component Pompeii
+            () JRPC
+        }
+        together {
+            component Capri
+            component Dante
+            () GraphQL
+        }
+    }
+    node CloudStorage {
+        storage bucket_pompeii
+        storage bucket_dante
+        storage bucket_capri
+    }
+}
+
+' Connectors
+Pompeii -u- JRPC
+Capri -u- GraphQL
+Dante -u- GraphQL
+Lictores -u- GraphQL
+
+' DB
+Dante -- db_dante
+Pompeii -- db_pompeii
+Lictores -- db_pompeii
+Capri -- db_capri
+
+' Storage
+Dante -- bucket_dante
+Capri -- bucket_capri
+Pompeii -- bucket_pompeii
+
+' Memorystore
+Dante -- Cache
+Pompeii -- Cache
+
+' IPC
+Lictores <-r-> Capri : grpc
+
+Lime -- GraphQL
+Lime -- JRPC
+
+
+@enduml
