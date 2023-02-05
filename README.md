@@ -5,3 +5,7 @@ This repository contains all sorts of schemas, diagrams and documentation which 
 ## Database Schema
 
 ![](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/fruitsco/tecnigrafo/main/database/schema.puml&frmat=svg)
+
+## Architecture Diagram
+
+![](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/fruitsco/tecnigrafo/main/diagrams/component.puml&frmat=svg)
