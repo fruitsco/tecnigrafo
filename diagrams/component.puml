@@ -1,67 +1,134 @@
-@startuml Deployment
+@startuml Components
 
-frame Vercel {
+!define GCPPuml https://raw.githubusercontent.com/Crashedmind/PlantUML-icons-GCP/master/dist
+!include GCPPuml/GCPCommon.puml
+!include GCPPuml/Storage/Cloud_Storage.puml
+!include GCPPuml/Compute/Cloud_Run.puml
+!include GCPPuml/Databases/Cloud_SQL.puml
+!include GCPPuml/Databases/Cloud_Memorystore.puml
+!include GCPPuml/Data_Analytics/Cloud_PubSub.puml
+
+' skinparam linetype ortho
+
+skinparam package<<Layout>> {
+    borderColor Transparent
+    backgroundColor Transparent
+    fontColor Transparent
+    stereotypeFontColor Transparent
+}
+
+
+package Vercel {
     node Frontend {
-        component Lime
+        package Group_Lime <<Layout>> {
+            component Lime
+        }
+        note as Note_Lime
+            Nextjs/React frontend
+        end note
+        Note_Lime -[hidden]d- Group_Lime
     }
 }
 
-frame GCP {
-    node CloudSQL {
-        database Database {
-            component db_pompeii
-            component db_capri
-            component db_dante
-        }
+package GCP {
+    together {
+        () JRPC
+        () GraphQL
     }
-    node Memorystore {
-        database Cache
-    }
-    node CloudRun {
-        component Lictores
-        together {
-            component Pompeii
-            () JRPC
+
+    rectangle Pompeii {
+        package Group_Pompeii <<Layout>> {
+            Cloud_Run(Cloud_Run_Pompeii, "Pompeii (Go)", "Cloud Run")
+            Cloud_SQL(Cloud_SQL_Pompeii, "Pompeii", "Cloud SQL")
+            Cloud_Storage(Cloud_Storage_Pompeii, "Pompeii", "Cloud Storage")
+            Cloud_Memorystore(Cloud_Memorystore_Pompeii, "Cache", "Memorystore")
         }
-        together {
-            component Capri
-            component Dante
-            () GraphQL
-        }
+        note as Note_Pompeii
+            Legacy authentication, payment & content backend
+        end note
+        Note_Pompeii -[hidden]d- Group_Pompeii
     }
-    node CloudStorage {
-        storage bucket_pompeii
-        storage bucket_dante
-        storage bucket_capri
+
+    rectangle Capri {
+        package Group_Capri <<Layout>> {
+            Cloud_Run(Cloud_Run_Capri, "Capri (Python)", "Cloud Run")
+            Cloud_SQL(Cloud_SQL_Capri, "Capri", "Cloud SQL")
+            Cloud_Storage(Cloud_Storage_Capri, "Capri", "Cloud Storage")
+            Cloud_Memorystore(Cloud_Memorystore_Capri, "Cache", "Memorystore")
+        }
+        note as Note_Capri
+            Content backend (files, events, projects, ...)
+        end note
+        Note_Capri -[hidden]d- Group_Capri
+    }
+
+    rectangle Dante {
+        package Group_Dante <<Layout>> {
+            Cloud_Run(Cloud_Run_Dante, "Dante (Strapi)", "Cloud Run")
+            Cloud_SQL(Cloud_SQL_Dante, "Dante", "Cloud SQL")
+            Cloud_Storage(Cloud_Storage_Dante, "Dante", "Cloud Storage")
+            Cloud_Memorystore(Cloud_Memorystore_Dante, "Cache", "Memorystore")
+        }
+        note as Note_Dante
+            Headless CMS for website content
+        end note
+        Note_Dante -[hidden]d- Group_Dante
+    }
+
+    rectangle Lictores {
+        package Group_Lictores <<Layout>> {
+            Cloud_Run(Cloud_Run_Lictores, "Lictores (Go)", "Cloud Run")
+        }
+        note as Note_Lictores
+            Connects capri to pompeii's user & payment database
+            --
+            Future standalone auth service
+        end note
+        Note_Lictores -[hidden]d- Group_Lictores
+    }
+
+    rectangle Postino {
+        package Group_Postino <<Layout>> {
+            Cloud_Run(Cloud_Run_Postino, "Postino (TS)", "Cloud Run")
+            Cloud_PubSub(Cloud_PubSub_Postino, "Mails", "Cloud PubSub")
+        }
+        note as Note_Postino
+            Future email service
+        end note
+        Note_Postino -[hidden]d- Group_Postino
     }
 }
 
-' Connectors
-Pompeii -u- JRPC
-Capri -u- GraphQL
-Dante -u- GraphQL
-Lictores -u- GraphQL
 
-' DB
-Dante -- db_dante
-Pompeii -- db_pompeii
-Lictores -- db_pompeii
-Capri -- db_capri
+Cloud_Run_Pompeii -- Cloud_SQL_Pompeii
+Cloud_Run_Pompeii -- Cloud_Storage_Pompeii
+Cloud_Run_Pompeii -- Cloud_Memorystore_Pompeii
+Cloud_Run_Pompeii -> Cloud_PubSub_Postino
+Cloud_Run_Pompeii -u- JRPC
 
-' Storage
-Dante -- bucket_dante
-Capri -- bucket_capri
-Pompeii -- bucket_pompeii
+Cloud_Run_Capri -- Cloud_SQL_Capri
+Cloud_Run_Capri -- Cloud_Storage_Capri
+Cloud_Run_Capri -- Cloud_Memorystore_Capri
+Cloud_Run_Capri -> Cloud_PubSub_Postino
+Cloud_Run_Capri -> Cloud_Run_Lictores : grpc
+Cloud_Run_Capri -u- GraphQL
 
-' Memorystore
-Dante -- Cache
-Pompeii -- Cache
+Cloud_Run_Dante -- Cloud_SQL_Dante
+Cloud_Run_Dante -- Cloud_Storage_Dante
+Cloud_Run_Dante -- Cloud_Memorystore_Dante
+Cloud_Run_Dante -u- GraphQL
 
-' IPC
-Lictores <-r-> Capri : grpc
+Cloud_Run_Lictores -- Cloud_SQL_Pompeii
+Cloud_Run_Lictores -> Cloud_PubSub_Postino
+Cloud_Run_Lictores -u- GraphQL
 
-Lime -- GraphQL
-Lime -- JRPC
+Cloud_Run_Postino <-d- Cloud_PubSub_Postino
 
+Lime -d- GraphQL
+Lime -d- JRPC
 
+JRPC -[hidden]d- Pompeii
+GraphQL -[hidden]d- Capri
+GraphQL -[hidden]d- Dante
+GraphQL -[hidden]d- Postino
 @enduml
