@@ -31,7 +31,7 @@ package Vercel {
 }
 
 package GCP {
-    together {
+    package Group_Connectors <<Layout>> {
         () JRPC
         () GraphQL
     }
@@ -127,8 +127,9 @@ Cloud_Run_Postino <-d- Cloud_PubSub_Postino
 Lime -d- GraphQL
 Lime -d- JRPC
 
-JRPC -[hidden]d- Pompeii
-GraphQL -[hidden]d- Capri
-GraphQL -[hidden]d- Dante
-GraphQL -[hidden]d- Postino
+Group_Connectors -[hidden]d- Pompeii
+Group_Connectors -[hidden]d- Capri
+Group_Connectors -[hidden]d- Dante
+Group_Connectors -[hidden]d- Postino
+Group_Connectors -[hidden]d- Lictores
 @enduml
