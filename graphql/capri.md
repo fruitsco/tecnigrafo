@@ -34,29 +34,18 @@ The product, if it was found.
 
 <code><a href="#product">Product</a></code>
 
-### `getProductFiles`
+### `getProductFileDownload`
 
-Get a list of files for a given product slug if the current user either purchased the item or is the owner.
-
-**Input**
-
-| Name   | Type     |
-| ------ | -------- |
-| `slug` | `string` |
-
-**Response**
-
-<code>[<a href="#product">SafeResource</a>]</code>
-
-### `getProductFileArchive`
-
-Get a link to a zip file which contains the files for the given product slug if the current user either purchased the item or is the owner.
+Get a download link to either a single file or to a zip file which contains the files for the given product slug.
+When `resourceId` is specified, the download link points to the given resource. If it's left out, the download link will point to the zip file.
+The endpoint returns a download link only if the current user either purchased the item or is the owner and fails otherwise.
 
 **Input**
 
-| Name   | Type     |
-| ------ | -------- |
-| `slug` | `string` |
+| Name         | Type     |
+| ------------ | -------- |
+| `slug`       | `string` |
+| `resourceId` | `string?` |
 
 **Response**
 
@@ -519,12 +508,12 @@ Represents a single file resource stored by fruits. Can be either a file availab
 
 Represents a reference to a file purchased by a consumer. It is safe to return to consumers, as it does not contain sensitive information such as the resource id. The `downloadUrl` is a temporary link to the downloadable file.
 
-| Name          | Type     |
-| ------------- | -------- |
-| `name`        | `string` |
-| `size`        | `int`    |
-| `mime`        | `string` |
-| `downloadUrl` | `string` |
+| Name   | Type     |
+| ------ | -------- |
+| `id`   | `string` |
+| `name` | `string` |
+| `size` | `int`    |
+| `mime` | `string` |
 
 ### `TimeSlot`
 
