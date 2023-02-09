@@ -42,9 +42,9 @@ The endpoint returns a download link only if the current user either purchased t
 
 **Input**
 
-| Name         | Type     |
-| ------------ | -------- |
-| `slug`       | `string` |
+| Name         | Type      |
+| ------------ | --------- |
+| `slug`       | `string`  |
 | `resourceId` | `string?` |
 
 **Response**
