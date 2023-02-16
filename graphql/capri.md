@@ -18,7 +18,6 @@ A list of products.
 
 <code>[<a href="#product">Product</a>]</code>
 
-
 ### `getProduct`
 
 Get a product with the given slug. If the user is not authenticated, certain features are restricted.
@@ -35,20 +34,24 @@ The product, if it was found.
 
 <code><a href="#product">Product</a></code>
 
+### `getProductFileDownload`
 
-### `getProductFiles`
-
-Get a list of files for a given product slug if the current user either purchased the item or is the owner.
+Get a download link to either a single file or to a zip file which contains the files for the given product slug.
+When `resourceId` is specified, the download link points to the given resource. If it's left out, the download link will point to the zip file.
+The endpoint returns a download link only if the current user either purchased the item or is the owner and fails otherwise.
 
 **Input**
 
-| Name   | Type     |
-| ------ | -------- |
-| `slug` | `string` |
+| Name         | Type      |
+| ------------ | --------- |
+| `slug`       | `string`  |
+| `resourceId` | `string?` |
 
 **Response**
 
-<code>[<a href="#product">SafeResource</a>]</code>
+| Name          | Type     |
+| ------------- | -------- |
+| `downloadUrl` | `string` |
 
 ### `getBookings`
 
@@ -68,7 +71,6 @@ A list of bookings for the given product.
 
 <code>[<a href="#booking">Booking</a>]</code>
 
-
 ### `getBookableDays`
 
 Get days on which a given product is available for booking.
@@ -82,7 +84,6 @@ Get days on which a given product is available for booking.
 | `slug` | `string` |
 
 **Response**
-
 
 <code>[DateTime]</code>
 
@@ -108,7 +109,6 @@ A list of bookable time slots.
 
 ## Mutations
 
-
 ### `initCockpitSession`
 
 Initialize a fresh cockpit session.
@@ -119,12 +119,11 @@ Initialize a fresh cockpit session.
 | --------------- | ----- | --------------------------------------------------- |
 | `maxUploadSize` | `int` | The total max upload size in bytes for this session |
 
-*Set-Cookie*
+_Set-Cookie_
 
 | Name              | Type     |
 | ----------------- | -------- |
 | `cockpit_session` | `string` |
-
 
 ### `initFileUpload`
 
@@ -137,7 +136,7 @@ Initialize a generic file upload.
 | `fileName` | `string`                      |
 | `context`  | [`FileContext`](#filecontext) |
 
-*Auth*
+_Auth_
 
 | Type     | Name              |
 | -------- | ----------------- |
@@ -170,9 +169,9 @@ Create a product with a certain type. For now, it can be either a `file`, an `ev
 | `eventData`   | <code><a href="#eventinput">EventInput</a>?</code>        |
 | `bundleData`  | `[slugs]?`                                                |
 
-> If `type` is *) `event`, `eventData` must be set, *) `file`, `fileData` must be set and *) `bundle`, `bundleData` must be set.
+> If `type` is _) `event`, `eventData` must be set, _) `file`, `fileData` must be set and \*) `bundle`, `bundleData` must be set.
 
-*Auth*
+_Auth_
 
 | Type     | Name              |
 | -------- | ----------------- |
@@ -184,7 +183,6 @@ Create a product with a certain type. For now, it can be either a `file`, an `ev
 The created product.
 
 <code><a href="#product">Product</a></code>
-
 
 ### `updateProduct`
 
@@ -206,7 +204,7 @@ Update a product with a given slug.
 
 > `eventData` may be set only if `type` is `event`. Same for `bundle` and `bundleData`.
 
-*Auth*
+_Auth_
 
 | Type     | Name      |
 | -------- | --------- |
@@ -218,7 +216,6 @@ The updated product.
 
 <code><a href="#product">Product</a></code>
 
-
 ### `deleteProduct`
 
 Delete a product with a given slug.
@@ -229,7 +226,7 @@ Delete a product with a given slug.
 | ------ | -------- |
 | `slug` | `string` |
 
-*Auth*
+_Auth_
 
 | Type     | Name      |
 | -------- | --------- |
@@ -247,7 +244,7 @@ The input to create a new event schedule.
 
 [`EventScheduleInput`](#eventscheduleinput)
 
-*Auth*
+_Auth_
 
 | Type     | Name      |
 | -------- | --------- |
@@ -258,7 +255,6 @@ The input to create a new event schedule.
 The created event schedule.
 
 [`EventSchedule`](#eventschedule)
-
 
 ### `createBooking`
 
@@ -274,7 +270,7 @@ Create a new booking for a given product.
 | `parentProductSlug` | `string?`                 |
 | `time`              | [`TimeRange`](#timerange) |
 
-*Auth*
+_Auth_
 
 | Type     | Name      |
 | -------- | --------- |
@@ -285,7 +281,6 @@ Create a new booking for a given product.
 The created booking.
 
 [`Booking`](#booking)
-
 
 ### `cancelBooking`
 
@@ -298,7 +293,7 @@ Cancel a given booking with the possibility to specify an optional reason.
 | `id`     | `string`                                                             |
 | `reason` | <code><a href="#bookingcancelreason">BookingCancelReason</a>?</code> |
 
-*Auth*
+_Auth_
 
 | Type     | Name      |
 | -------- | --------- |
@@ -315,7 +310,7 @@ Get a list of all linked calendar accounts for the currently logged in account.
 | `provider` | [`CalendarProvider`](#calendarprovider) |
 | `type`     | [`CalendarType`](#calendarprovider)     |
 
-*Auth*
+_Auth_
 
 | Type     | Name      |
 | -------- | --------- |
@@ -327,7 +322,6 @@ A list of calendar accounts.
 
 <code>[<a href="#calendaraccount">CalendarAccount</a>]</code>
 
-
 ### `linkCalendarAccount`
 
 Link a new calendar account to the currently logged in account.
@@ -338,7 +332,7 @@ Link a new calendar account to the currently logged in account.
 | ---------- | --------------------------------------- |
 | `provider` | [`CalendarProvider`](#calendarprovider) |
 
-*Auth*
+_Auth_
 
 | Type     | Name      |
 | -------- | --------- |
@@ -352,7 +346,6 @@ A url which can be used to connect to a calendar account.
 | ----- | -------- |
 | `url` | `string` |
 
-
 ### `deleteCalendarAccount`
 
 Unlink and delete an existing calendar connection from the currently logged in account.
@@ -363,7 +356,7 @@ Unlink and delete an existing calendar connection from the currently logged in a
 | ---- | -------- |
 | `id` | `string` |
 
-*Auth*
+_Auth_
 
 | Type     | Name      |
 | -------- | --------- |
@@ -381,7 +374,6 @@ Update an existing calendar of the currently logged in account.
 | `detectCollission` | `boolean` |
 | `update_events`    | `boolean` |
 
-
 ### `setDefaultCalendar`
 
 Change the default calendar for the currently logged in account.
@@ -392,7 +384,7 @@ Change the default calendar for the currently logged in account.
 | ---- | -------- |
 | `id` | `string` |
 
-*Auth*
+_Auth_
 
 | Type     | Name      |
 | -------- | --------- |
@@ -516,12 +508,12 @@ Represents a single file resource stored by fruits. Can be either a file availab
 
 Represents a reference to a file purchased by a consumer. It is safe to return to consumers, as it does not contain sensitive information such as the resource id. The `downloadUrl` is a temporary link to the downloadable file.
 
-| Name          | Type     |
-| ------------- | -------- |
-| `name`        | `string` |
-| `size`        | `int`    |
-| `mime`        | `string` |
-| `downloadUrl` | `string` |
+| Name   | Type     |
+| ------ | -------- |
+| `id`   | `string` |
+| `name` | `string` |
+| `size` | `int`    |
+| `mime` | `string` |
 
 ### `TimeSlot`
 
