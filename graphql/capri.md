@@ -163,7 +163,7 @@ Create a product with a certain type. For now, it can be either a `file`, an `ev
 | ------------- | --------------------------------------------------------- |
 | `name`        | `string`                                                  |
 | `description` | `string?`                                                 |
-| `price`       | `int`                                                     |
+| `price`       | [`Price`](#price)                                         |
 | `type`        | [`ProductType`](#producttype)                             |
 | `fileData`    | <code>[<a href="#resourceinput">ResourceInput<a>]</code>? |
 | `eventData`   | <code><a href="#eventinput">EventInput</a>?</code>        |
@@ -195,7 +195,7 @@ Update a product with a given slug.
 | `slug`           | `string`                                                 |
 | `name`           | `string?`                                                |
 | `description`    | `string?`                                                |
-| `price`          | `int?`                                                   |
+| `price`          | <code><a href="#price">Price</a>?</code>                 |
 | `enabled`        | `boolean?`                                               |
 | `bannerResource` | <code><a href="#resourceinput">ResourceInput</a>?</code> |
 | `imageResource`  | <code><a href="#resourceinput">ResourceInput</a>?</code> |
@@ -443,7 +443,7 @@ _Auth_
 | `type`           | [`ProductType`](#producttype)                         |
 | `name`           | `string`                                              |
 | `description`    | `string?`                                             |
-| `price`          | `int?`                                                |
+| `price`          | <code><a href="#price">Price</a>?</code>              |
 | `owner`          | `boolean`                                             |
 | `purchased`      | `boolean`                                             |
 | `bannerResource` | <code><a href="#resource">Resource<a>?</code>         |
@@ -565,6 +565,13 @@ Represents a single bookable time slot.
 | `checkCollisions` | `boolean` |
 | `updateEvents`    | `boolean` |
 
+### `Price`
+
+| Name       | Type                    |
+| ---------- | ----------------------- |
+| `value`    | `int`                   |
+| `currency` | [`Currency`](#currency) |
+
 ## Enums
 
 ### `ProductType`
@@ -623,3 +630,10 @@ Represents a single bookable time slot.
 | -------- |
 | `REMOTE` |
 | `LINKED` |
+
+### `Currency`
+
+| Name  |
+| ----- |
+| `EUR` |
+| `USD` |
