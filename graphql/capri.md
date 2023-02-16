@@ -508,12 +508,13 @@ Represents a single file resource stored by fruits. Can be either a file availab
 
 Represents a reference to a file purchased by a consumer. It is safe to return to consumers, as it does not contain sensitive information such as the resource id. The `downloadUrl` is a temporary link to the downloadable file.
 
-| Name   | Type     |
-| ------ | -------- |
-| `id`   | `string` |
-| `name` | `string` |
-| `size` | `int`    |
-| `mime` | `string` |
+| Name          | Type     |
+| ------        | -------- |
+| `id`          | `string` |
+| `name`        | `string` |
+| `size`        | `int`    |
+| `mime`        | `string` |
+| `downloadUrl` | `string` |
 
 ### `TimeSlot`
 
@@ -602,13 +603,15 @@ Represents a single bookable time slot.
 | `WEBEX`           |
 | `WHEREBY`         |
 | `ZOOM`            |
+| `CUSTOM`          |
 
 ### `FileContext`
 
 | Name     |
 | -------- |
 | `UPLOAD` |
-| `META`   |
+| `PRIVATE`|
+| `PUBLIC` |
 
 ### `BookingCancelReason`
 
@@ -623,6 +626,15 @@ Represents a single bookable time slot.
 | -------------- |
 | `GOOGLE`       |
 | `APPLE_ICLOUD` |
+| `FRUITS`       |
+
+### `OAuthProvider`
+
+| Name           |
+| -------------- |
+| `GOOGLE`       |
+| `APPLE`        |
+| `ZOOM`         |
 
 ### `CalendarType`
 
