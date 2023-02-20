@@ -53,6 +53,22 @@ The endpoint returns a download link only if the current user either purchased t
 | ------------- | -------- |
 | `downloadUrl` | `string` |
 
+### `getAuthUrl`
+
+Get oauth URL for a given provider {APPLE; GOOGLE; MICROSOFT;ZOOM}.
+
+**Input**
+
+| Name       | Type            |
+| ---------- | --------------- |
+| `provider` | `OAuthProvider` |
+
+**Response**
+
+| Name  | Type     |
+| ----- | -------- |
+| `url` | `string` |
+
 ### `getBookings`
 
 Get bookings for a given product slug if the current user is the owner of the product. If the user purchased the product, all bookings for the product are returned. Incase no slug is provided, a producer gets all bookings for his products and a user gets all bookings for his account.
@@ -509,7 +525,7 @@ Represents a single file resource stored by fruits. Can be either a file availab
 Represents a reference to a file purchased by a consumer. It is safe to return to consumers, as it does not contain sensitive information such as the resource id. The `downloadUrl` is a temporary link to the downloadable file.
 
 | Name          | Type     |
-| ------        | -------- |
+| ------------- | -------- |
 | `id`          | `string` |
 | `name`        | `string` |
 | `size`        | `int`    |
@@ -607,11 +623,11 @@ Represents a single bookable time slot.
 
 ### `FileContext`
 
-| Name     |
-| -------- |
-| `UPLOAD` |
-| `PRIVATE`|
-| `PUBLIC` |
+| Name      |
+| --------- |
+| `UPLOAD`  |
+| `PRIVATE` |
+| `PUBLIC`  |
 
 ### `BookingCancelReason`
 
@@ -630,11 +646,12 @@ Represents a single bookable time slot.
 
 ### `OAuthProvider`
 
-| Name           |
-| -------------- |
-| `GOOGLE`       |
-| `APPLE`        |
-| `ZOOM`         |
+| Name        |
+| ----------- |
+| `GOOGLE`    |
+| `APPLE`     |
+| `ZOOM`      |
+| `MICROSOFT` |
 
 ### `CalendarType`
 
