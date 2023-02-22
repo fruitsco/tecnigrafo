@@ -2,7 +2,7 @@
 
 ## Global
 
-This global metadata is defined on every event that is sent to the tracking backend
+This global metadata is sent with every event.
 
 | Metadata    | Type      | Description                                                                                               |
 | ----------- | --------- | --------------------------------------------------------------------------------------------------------- |
@@ -47,7 +47,7 @@ This global metadata is defined on every event that is sent to the tracking back
 
 ## Cockpit
 
-This is the metadata which is sent with all cockpit events.
+This metadata is sent with all cockpit events.
 
 | Metadata | Type                    | Description                                       |
 | -------- | ----------------------- | ------------------------------------------------- |
@@ -99,6 +99,8 @@ This event is triggered when a seller downloads his own product files.
 | `productSlug` | `string` | The slug of the product. |
 
 ## Buyer Cockpit
+
+This event metadata is sent with all buyer cockpit events.
 
 | Metadata      | Type     | Description              |
 | ------------- | -------- | ------------------------ |
