@@ -23,6 +23,22 @@ This global metadata is defined on every event that is sent to the tracking back
 | `EVENT`   |
 | `PROJECT` |
 
+### `EventType`
+
+| Name                                |
+| ----------------------------------- |
+| `PAGEVIEW`                          |
+| `COCKPIT_CREATE_LAUNCH`             |
+| `COCKPIT_CREATE_STEP`               |
+| `COCKPIT_CREATE_SUCCESS`            |
+| `COCKPIT_CREATE_ENRICH_INFORMATION` |
+| `COCKPIT_CREATE_DOWNLOAD`           |
+| `COCKPIT_BUY_LAUNCH`                |
+| `COCKPIT_BUY_STEP`                  |
+| `COCKPIT_BUY_PAYMENT`               |
+| `COCKPIT_BUY_PURCHASE`              |
+| `COCKPIT_BUY_DOWNLOAD`              |
+
 ## Generic
 
 ### Page View

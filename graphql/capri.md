@@ -406,6 +406,17 @@ _Auth_
 | -------- | --------- |
 | `cookie` | `session` |
 
+### `track`
+
+Track a user event.
+
+**Input**
+
+| Name   | Type                                 |
+| ------ | ------------------------------------ |
+| `type` | [`EventType`](./events.md#eventtype) |
+| `meta` | `JSON`                               |
+
 ## Inputs
 
 ### `ResourceInput`
