@@ -25,19 +25,19 @@ This global metadata is defined on every event that is sent to the tracking back
 
 ### `EventType`
 
-| Name                                |
-| ----------------------------------- |
-| `PAGEVIEW`                          |
-| `COCKPIT_CREATE_LAUNCH`             |
-| `COCKPIT_CREATE_STEP`               |
-| `COCKPIT_CREATE_SUCCESS`            |
-| `COCKPIT_CREATE_ENRICH_INFORMATION` |
-| `COCKPIT_CREATE_DOWNLOAD`           |
-| `COCKPIT_BUY_LAUNCH`                |
-| `COCKPIT_BUY_STEP`                  |
-| `COCKPIT_BUY_PAYMENT`               |
-| `COCKPIT_BUY_PURCHASE`              |
-| `COCKPIT_BUY_DOWNLOAD`              |
+| Name                                                                       |
+| -------------------------------------------------------------------------- |
+| [`PAGEVIEW`](#page-view)                                                   |
+| [`COCKPIT_CREATE_LAUNCH`](#create-flow-started)                            |
+| [`COCKPIT_CREATE_STEP`](#create-flow-step)                                 |
+| [`COCKPIT_CREATE_SUCCESS`](#create-flow-success)                           |
+| [`COCKPIT_CREATE_ENRICH_INFORMATION`](#create-flow-seller-data-enrichment) |
+| [`COCKPIT_CREATE_DOWNLOAD`](#create-flow-file-download)                    |
+| [`COCKPIT_BUY_LAUNCH`](#buyer-flow-started)                                |
+| [`COCKPIT_BUY_STEP`](#buyer-flow-step)                                     |
+| [`COCKPIT_BUY_PAYMENT`](#buyer-flow-payment)                               |
+| [`COCKPIT_BUY_PURCHASE`](#buyer-flow-purchase)                             |
+| [`COCKPIT_BUY_DOWNLOAD`](#buyer-flow-file-download)                        |
 
 ## Generic
 
