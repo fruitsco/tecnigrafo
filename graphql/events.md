@@ -23,7 +23,7 @@ This global metadata is sent with every event.
 | `EVENT`   |
 | `PROJECT` |
 
-### `EventType`
+### `TrackEventType`
 
 | Name                                                                       |
 | -------------------------------------------------------------------------- |
