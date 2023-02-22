@@ -1,21 +1,30 @@
-# Events
+# Tracking
 
-## Global
+The following sections describe the schema for tracking events sent to the server by our clients. When forwarding these events to a tracking data pipeline, the server attaches the metadata defined in [_server metadata_](#server-metadata) to the payload.
 
-This global metadata is sent with every event.
+## Server Metadata
+
+On top of the metadata sent by the client, the following metadata is attached to every outgoing event by the server.
 
 | Metadata    | Type      | Description                                                                                               |
 | ----------- | --------- | --------------------------------------------------------------------------------------------------------- |
 | `sessionId` | `string`  | Represents a single session of a user. Usually expires after closing the browser.                         |
 | `trackId`   | `string`  | Identifies a user best-effort. If it's a signed in user, it's the `userId`. If not, it's the `sessionId`. |
 | `userId`    | `string?` | Represents a logged-in user.                                                                              |
-| `url`       | `string`  | The full URL of the page the event occurred on                                                            |
-| `path`      | `string`  | The path of the page the event occurred on                                                                |
-| `timestamp` | `Date`    | The timestamp when the event occurred.                                                                    |
+
+## Global
+
+This global metadata is sent with every event.
+
+| Metadata    | Type     | Description                                    |
+| ----------- | -------- | ---------------------------------------------- |
+| `url`       | `string` | The full URL of the page the event occurred on |
+| `path`      | `string` | The path of the page the event occurred on     |
+| `timestamp` | `Date`   | The timestamp when the event occurred.         |
 
 ## Enums
 
-### `FlowType`
+### `CockpitFlow`
 
 | Name      |
 | --------- |
@@ -23,7 +32,7 @@ This global metadata is sent with every event.
 | `EVENT`   |
 | `PROJECT` |
 
-### `TrackEventType`
+### `TrackEvent`
 
 | Name                                                                       |
 | -------------------------------------------------------------------------- |
@@ -49,10 +58,10 @@ This global metadata is sent with every event.
 
 This metadata is sent with all cockpit events.
 
-| Metadata | Type                    | Description                                       |
-| -------- | ----------------------- | ------------------------------------------------- |
-| `flow`   | [`FlowType`](#flowtype) | The flow in which the event occurred.             |
-| `step`   | `string`                | The step identifier the event is associated with. |
+| Metadata | Type                          | Description                                       |
+| -------- | ----------------------------- | ------------------------------------------------- |
+| `flow`   | [`CockpitFlow`](#cockpitflow) | The flow in which the event occurred.             |
+| `step`   | `string`                      | The step identifier the event is associated with. |
 
 ## Seller Cockpit
 

@@ -55,7 +55,7 @@ The endpoint returns a download link only if the current user either purchased t
 
 ### `getAuthUrl`
 
-Get oauth URL for a given provider {APPLE; GOOGLE; MICROSOFT;ZOOM}.
+Get OAuth URL for a given provider {APPLE; GOOGLE; MICROSOFT;ZOOM}.
 
 **Input**
 
@@ -412,10 +412,10 @@ Track a user event.
 
 **Input**
 
-| Name   | Type                                 |
-| ------ | ------------------------------------ |
-| `type` | [`EventType`](./events.md#eventtype) |
-| `meta` | `JSON`                               |
+| Name   | Type                                     |
+| ------ | ---------------------------------------- |
+| `type` | [`TrackEvent`](./tracking.md#trackevent) |
+| `meta` | `JSON`                                   |
 
 ## Inputs
 
