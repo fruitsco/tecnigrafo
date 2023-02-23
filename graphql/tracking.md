@@ -2,7 +2,9 @@
 
 The following sections describe the schema for tracking events sent to the server by our clients. When forwarding these events to a tracking data pipeline, the server attaches the metadata defined in [_server metadata_](#server-metadata) to the payload.
 
-## Server Metadata
+## General
+
+### Server Metadata
 
 On top of the metadata sent by the client, the following metadata is attached to every outgoing event by the server.
 
@@ -12,25 +14,16 @@ On top of the metadata sent by the client, the following metadata is attached to
 | `trackId`   | `string`  | Identifies a user best-effort. If it's a signed in user, it's the `userId`. If not, it's the `sessionId`. |
 | `userId`    | `string?` | Represents a logged-in user.                                                                              |
 
-## Global
+### Global Metadata
 
 This global metadata is sent with every event.
 
 | Metadata    | Type     | Description                                    |
 | ----------- | -------- | ---------------------------------------------- |
 | `url`       | `string` | The full URL of the page the event occurred on |
-| `path`      | `string` | The path of the page the event occurred on     |
 | `timestamp` | `Date`   | The timestamp when the event occurred.         |
 
-## Enums
-
-### `CockpitFlow`
-
-| Name      |
-| --------- |
-| `FILE`    |
-| `EVENT`   |
-| `PROJECT` |
+## Types
 
 ### `TrackEvent`
 
@@ -48,7 +41,15 @@ This global metadata is sent with every event.
 | [`COCKPIT_BUY_PURCHASE`](#buyer-flow-purchase)                             |
 | [`COCKPIT_BUY_DOWNLOAD`](#buyer-flow-file-download)                        |
 
-## Generic
+### `CockpitFlow`
+
+| Name      |
+| --------- |
+| `FILE`    |
+| `EVENT`   |
+| `PROJECT` |
+
+## Generic Events
 
 ### Page View
 
@@ -59,7 +60,7 @@ This global metadata is sent with every event.
 | `category` | `string` | The category of the page viewed. |
 | `name`     | `string` | The name of the page viewed.     |
 
-## Cockpit
+## Cockpit Events
 
 This metadata is sent with all cockpit events.
 
@@ -68,7 +69,7 @@ This metadata is sent with all cockpit events.
 | `flow`   | [`CockpitFlow`](#cockpitflow) | The flow in which the event occurred.             |
 | `step`   | `string`                      | The step identifier the event is associated with. |
 
-## Seller Cockpit
+## Seller Cockpit Events
 
 | Metadata           | Type     | Description                    |
 | ------------------ | -------- | ------------------------------ |
@@ -112,7 +113,7 @@ This event is triggered when a seller downloads his own product files.
 | ------------- | -------- | ------------------------ |
 | `productSlug` | `string` | The slug of the product. |
 
-## Buyer Cockpit
+## Buyer Cockpit Events
 
 This event metadata is sent with all buyer cockpit events.
 
