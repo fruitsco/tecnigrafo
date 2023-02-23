@@ -53,7 +53,7 @@ This global metadata is sent with every event.
 
 ### Page View
 
-`PAGEVIEW`
+> 🔖 `PAGEVIEW`
 
 | Metadata   | Type     | Description                      |
 | ---------- | -------- | -------------------------------- |
@@ -77,19 +77,19 @@ This metadata is sent with all cockpit events.
 
 ### Create flow started
 
-`COCKPIT_CREATE_LAUNCH`
+> 🔖 `COCKPIT_CREATE_LAUNCH`
 
 This event is triggered when a creator visits the cockpit.
 
 ### Create flow step
 
-`COCKPIT_CREATE_STEP`
+> 🔖 `COCKPIT_CREATE_STEP`
 
 This event is triggered when a creator advances in the cockpit.
 
 ### Create flow success
 
-`COCKPIT_CREATE_SUCCESS`
+> 🔖 `COCKPIT_CREATE_SUCCESS`
 
 This event is triggered when a creator successfully created a product.
 
@@ -99,13 +99,13 @@ This event is triggered when a creator successfully created a product.
 
 ### Create flow seller data enrichment
 
-`COCKPIT_CREATE_ENRICH_INFORMATION`
+> 🔖 `COCKPIT_CREATE_ENRICH_INFORMATION`
 
 This event is triggered when a creator successfully enriches their seller account with personal information.
 
 ### Create flow file download
 
-`COCKPIT_CREATE_DOWNLOAD`
+> `🔖 COCKPIT_CREATE_DOWNLOAD`
 
 This event is triggered when a seller downloads his own product files.
 
@@ -123,30 +123,30 @@ This event metadata is sent with all buyer cockpit events.
 
 ### Buyer flow started
 
-`COCKPIT_BUY_LAUNCH`
+> `🔖 COCKPIT_BUY_LAUNCH`
 
 This event is triggered when a buyer visits the cockpit.
 
 ### Buyer flow step
 
-`COCKPIT_BUY_STEP`
+> `🔖 COCKPIT_BUY_STEP`
 
 This event is triggered when a buyer advances in the cockpit.
 
 ### Buyer flow payment
 
-`COCKPIT_BUY_PAYMENT`
+> 🔖 `COCKPIT_BUY_PAYMENT`
 
 This event is triggered when a buyer initiates the payment flow.
 
 ### Buyer flow purchase
 
-`COCKPIT_BUY_PURCHASE`
+> 🔖 `COCKPIT_BUY_PURCHASE`
 
 This event is triggered when a buyer successfully purchased a product.
 
 ### Buyer flow file download
 
-`COCKPIT_BUY_DOWNLOAD`
+> 🔖 `COCKPIT_BUY_DOWNLOAD`
 
 This event is triggered when a buyer downloads his own product files.
