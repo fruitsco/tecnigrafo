@@ -464,20 +464,22 @@ Track a user event.
 
 ### `Product`
 
-| Name             | Type                                                  |
-| ---------------- | ----------------------------------------------------- |
-| `slug`           | `string`                                              |
-| `type`           | [`ProductType`](#producttype)                         |
-| `name`           | `string`                                              |
-| `description`    | `string?`                                             |
-| `price`          | <code><a href="#price">Price</a>?</code>              |
-| `owner`          | `boolean`                                             |
-| `purchased`      | `boolean`                                             |
-| `bannerResource` | <code><a href="#resource">Resource<a>?</code>         |
-| `imageResource`  | <code><a href="#resource">Resource<a>?</code>         |
-| `fileData`       | <code>[<a href="#resource">Resource<a>]?</code>       |
-| `eventData`      | <code><a href="#productevent">ProductEvent<a>?</code> |
-| `bundleData`     | <code>[<a href="#product">Product<a>]?</code>         |
+| Name              | Type                                                  |
+| ----------------- | ----------------------------------------------------- |
+| `slug`            | `string`                                              |
+| `type`            | [`ProductType`](#producttype)                         |
+| `name`            | `string`                                              |
+| `description`     | `string?`                                             |
+| `price`           | <code><a href="#price">Price</a>?</code>              |
+| `owner`           | `boolean`                                             |
+| `purchased`       | `boolean`                                             |
+| `accentColor`     | <code><a href="#color">Color</a>?</code>              |
+| `backgroundColor` | <code><a href="#color">Color</a>?</code>              |
+| `bannerResource`  | <code><a href="#resource">Resource<a>?</code>         |
+| `imageResource`   | <code><a href="#resource">Resource<a>?</code>         |
+| `fileData`        | <code>[<a href="#resource">Resource<a>]?</code>       |
+| `eventData`       | <code><a href="#productevent">ProductEvent<a>?</code> |
+| `bundleData`      | <code>[<a href="#product">Product<a>]?</code>         |
 
 > `owner` is `true`, if the currently logged-in user is the owner of the product, `false` otherwise.
 
@@ -599,6 +601,14 @@ Represents a single bookable time slot.
 | ---------- | ----------------------- |
 | `value`    | `int`                   |
 | `currency` | [`Currency`](#currency) |
+
+### `Color`
+
+| Name      | Type      |
+| --------- | --------- |
+| `default` | `boolean` |
+| `code`    | `string?` |
+| `name`    | `string?` |
 
 ## Enums
 
