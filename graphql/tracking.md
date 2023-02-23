@@ -54,6 +54,11 @@ This global metadata is sent with every event.
 
 `PAGEVIEW`
 
+| Metadata   | Type     | Description                      |
+| ---------- | -------- | -------------------------------- |
+| `category` | `string` | The category of the page viewed. |
+| `name`     | `string` | The name of the page viewed.     |
+
 ## Cockpit
 
 This metadata is sent with all cockpit events.
