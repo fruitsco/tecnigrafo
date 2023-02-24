@@ -206,17 +206,10 @@ Update a product with a given slug.
 
 **Input**
 
-| Name             | Type                                                     |
-| ---------------- | -------------------------------------------------------- |
-| `slug`           | `string`                                                 |
-| `name`           | `string?`                                                |
-| `description`    | `string?`                                                |
-| `price`          | <code><a href="#price">Price</a>?</code>                 |
-| `enabled`        | `boolean?`                                               |
-| `bannerResource` | <code><a href="#resourceinput">ResourceInput</a>?</code> |
-| `imageResource`  | <code><a href="#resourceinput">ResourceInput</a>?</code> |
-| `eventData`      | <code><a href="#eventinput">EventInput</a>?</code>       |
-| `bundleData`     | `[slug]?`                                                |
+| Name                 | Type                                                       |
+| -------------------- | ---------------------------------------------------------- |
+| `slug`               | `string`                                                   |
+| `productUpdateInput` | <code><a href="#eventinput">ProductUpdateInput</a>?</code> |
 
 > `eventData` may be set only if `type` is `event`. Same for `bundle` and `bundleData`.
 
@@ -488,6 +481,22 @@ Track a user event.
 > `fileData` and `eventData` is only sent if the current user is the owner.
 
 > If `type` is `bundle`, the product is a bundle and its child products can be queried from `bundleData`.
+
+### `ProductUpdateInput`
+
+| Name              | Type                                                   |
+| ----------------- | ------------------------------------------------------ |
+| `name`            | `string`                                               |
+| `description`     | `string?`                                              |
+| `price`           | <code><a href="#price">Price</a>?</code>               |
+| `enabled`         | `boolean`                                              |
+| `accentColor`     | <code><a href="#productcolor">ProductColor</a>?</code> |
+| `backgroundColor` | <code><a href="#productcolor">ProductColor</a>?</code> |
+| `bannerResource`  | <code><a href="#resource">Resource<a>?</code>          |
+| `imageResource`   | <code><a href="#resource">Resource<a>?</code>          |
+| `fileData`        | <code>[<a href="#resource">Resource<a>]?</code>        |
+| `eventData`       | <code><a href="#productevent">ProductEvent<a>?</code>  |
+| `bundleData`      | <code>[<a href="#product">Product<a>]?</code>          |
 
 ### `ProductEvent`
 
