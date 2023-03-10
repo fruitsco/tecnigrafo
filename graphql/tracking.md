@@ -73,7 +73,7 @@ This metadata is sent with all cockpit events.
 
 | Metadata           | Type     | Description                    |
 | ------------------ | -------- | ------------------------------ |
-| `cockpitSessinoId` | `string` | The ID of the cockpit session. |
+| `cockpitSessionId` | `string` | The ID of the cockpit session. |
 
 ### Create flow started
 
