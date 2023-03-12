@@ -55,13 +55,13 @@ The endpoint returns a download link only if the current user either purchased t
 
 ### `getAuthUrl`
 
-Get OAuth URL for a given provider {APPLE; GOOGLE; MICROSOFT;ZOOM}.
+Get OAuth URL for a given provider.
 
 **Input**
 
-| Name       | Type            |
-| ---------- | --------------- |
-| `provider` | `OAuthProvider` |
+| Name       | Type                              |
+| ---------- | --------------------------------- |
+| `provider` | [`OAuthProvider`](#oauthprovider) |
 
 **Response**
 
@@ -122,6 +122,18 @@ If calendars are linked those events are used to filter. If no calendars are lin
 A list of bookable time slots.
 
 <code>[<a href="#timeslot">TimeSlot</a>]</code>
+
+### `getEventSchedules`
+
+Get schedules which can be chosen when creating a new event.
+
+> If a user is logged in, both public and private schedules are returned.
+
+**Response**
+
+A list of available schedules.
+
+<code>[<a href="#eventschedule">EventSchedule</a>]</code>
 
 ## Mutations
 
@@ -185,7 +197,7 @@ Create a product with a certain type. For now, it can be either a `file`, an `ev
 | `eventData`   | <code><a href="#eventinput">EventInput</a>?</code>        |
 | `bundleData`  | `[slugs]?`                                                |
 
-> If `type` is _) `event`, `eventData` must be set, _) `file`, `fileData` must be set and \*) `bundle`, `bundleData` must be set.
+> If `type` is `event`, `eventData` must be set, `file`, `fileData` must be set and `bundle`, `bundleData` must be set.
 
 _Auth_
 
@@ -264,6 +276,22 @@ _Auth_
 The created event schedule.
 
 [`EventSchedule`](#eventschedule)
+  
+### `deleteEventSchedule`
+  
+Delete an event schedule by its given id.
+  
+**Input**
+  
+| Name | Type     |
+| ---- | -------- |
+| `id` | `string` |
+
+_Auth_
+
+| Type     | Name      |
+| -------- | --------- |
+| `cookie` | `session` |
 
 ### `createBooking`
 
