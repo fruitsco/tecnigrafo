@@ -89,15 +89,18 @@ A list of bookings for the given product.
 
 ### `getBookableDays`
 
-Get days on which a given product is available for booking.
+Get days of a month on which a given product is available for booking.
 
 > If the product type is not `event`, an error is thrown.
+
+> Of the `date` input, only year and month are considered.
 
 **Input**
 
 | Name   | Type     |
 | ------ | -------- |
 | `slug` | `string` |
+| `date` | `Date`   |
 
 **Response**
 
