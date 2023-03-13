@@ -498,6 +498,7 @@ Track a user event.
 | `customType`      | `string?`                                              |
 | `owner`           | `boolean`                                              |
 | `purchased`       | `boolean`                                              |
+| `available`       | `boolean`                                              |
 | `accentColor`     | <code><a href="#productcolor">ProductColor</a>?</code> |
 | `backgroundColor` | <code><a href="#productcolor">ProductColor</a>?</code> |
 | `bannerResource`  | <code><a href="#resource">Resource<a>?</code>          |
@@ -509,6 +510,8 @@ Track a user event.
 > `owner` is `true`, if the currently logged-in user is the owner of the product, `false` otherwise.
 
 > `purchased` is `true`, if the currently logged-in user is not the owner of the product and purchased it, `false` otherwise.
+
+> `available` is `false`, if the product was sold `quantity` times, `true` otherwise.
 
 > `fileData` and `eventData` is only sent if the current user is the owner.
 
