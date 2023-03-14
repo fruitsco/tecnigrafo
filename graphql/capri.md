@@ -197,7 +197,6 @@ Create a product with a certain type. For now, it can be either a `file`, an `ev
 | `price`       | [`Price`](#price)                                         |
 | `type`        | [`ProductType`](#producttype)                             |
 | `quantity`    | `number?`                                                 |
-| `customType`  | `string?`                                                 |
 | `fileData`    | <code>[<a href="#resourceinput">ResourceInput<a>]</code>? |
 | `eventData`   | <code><a href="#eventinput">EventInput</a>?</code>        |
 | `bundleData`  | `[slugs]?`                                                |
@@ -498,7 +497,6 @@ Track a user event.
 | `description`     | `string?`                                              |
 | `price`           | <code><a href="#price">Price</a>?</code>               |
 | `quantity`        | `number?`                                              |
-| `customType`      | `string?`                                              |
 | `owner`           | `boolean`                                              |
 | `purchased`       | `boolean`                                              |
 | `available`       | `boolean`                                              |
@@ -528,7 +526,6 @@ Track a user event.
 | `description`     | `string?`                                              |
 | `price`           | <code><a href="#price">Price</a>?</code>               |
 | `quantity`        | `number?`                                              |
-| `customType`      | `string?`                                              |
 | `enabled`         | `boolean`                                              |
 | `accentColor`     | <code><a href="#productcolor">ProductColor</a>?</code> |
 | `backgroundColor` | <code><a href="#productcolor">ProductColor</a>?</code> |
